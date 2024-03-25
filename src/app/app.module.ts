@@ -14,6 +14,10 @@ import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/
 import { FormsModule } from '@angular/forms';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { LoginComponent } from './login/login.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
 
 
 @NgModule({
@@ -25,6 +29,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     LayoutAdminComponent,
     DashboardComponent,
     SublevelMenuComponent,
+    LoginComponent,
+
+
 
   ],
   imports: [
@@ -32,6 +39,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatButtonModule,
+    FormsModule,
+
 
   ],
   providers: [

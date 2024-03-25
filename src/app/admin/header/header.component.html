@@ -28,13 +28,14 @@
       <div class="head-user-avatar-container">
         <div class="head-user-avatar" (click)="togglePopup()">
 
-          <!-- <img [src]="'assets/' + AvatarUrl" alt="user" class="user-avatar"> -->
+           <!-- <img [src]="'assets/' + Avatar" alt="user" class="user-avatar"> -->
+           <img [src]="'assets/user1.jpg'" alt="user" class="user-avatar">
           <div class="circle-indicator pulse"></div>
         </div>
         <div *ngIf="isPopupVisible" class="popup">
 
 
-           <!-- <p>Tên: {{ userName }}</p> -->
+           <p>Tên: {{ userName }}</p>
 
 
         </div>

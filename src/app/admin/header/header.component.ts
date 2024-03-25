@@ -11,7 +11,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class HeaderComponent {
   userName: string | undefined;
   isPopupVisible = false;
-  AvatarUrl : string | undefined;
+  Avatar : string | undefined;
   @Input() collapsed = false;
   @Input() screenWidth = 0;
   constructor( private router: Router, private authService:AuthService,
@@ -29,7 +29,7 @@ export class HeaderComponent {
       if (token) {
         const decodedToken = this.jwtHelper.decodeToken(token);
         this.userName = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
-        this.AvatarUrl = decodedToken ['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'];
+        this.Avatar = decodedToken ['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'];
         console.log('Token khi dịch', decodedToken);
 
       }

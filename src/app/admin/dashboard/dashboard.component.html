@@ -1,1 +1,91 @@
-<p>dashboard works!</p>
+
+<div [ngClass]="getClass()">
+  <div class="col-left">
+    <div class="card welcome-card">
+      <div class="card-head welcome-head-container">
+        <div class="col-left">
+          <div> Xin Chào!</div>
+          <p>{{ TenNV }}</p>
+        </div>
+        <div class="col-right">
+          <div style="border-radius: 50%; text-align: center; width: 200px; height: 200px; overflow: hidden;">
+            <!-- <div style="width: 100%; height: 100%; background-image: url('assets/{{ Avatar }}'); background-size: cover; background-position: center;"></div> -->
+            <div style="width: 100%; height: 100%; background-image: url('assets/user1.jpg'); background-size: cover; background-position: center;"></div>
+          </div>
+      </div>
+      </div>
+      <div class="card-body welcome-body-container">
+        <div class="col-left">
+          <div> Chức vụ</div>
+          <p>{{ Role }}</p>
+        </div>
+        <div class="col-right">
+          <div class="performance-container">
+            <div class="performance">
+              <div>Tiến độ</div>
+              <div>80%</div>
+            </div>
+            <div class="progress">
+              <div class="progress-bar"></div>
+            </div>
+            <div class="view-profile">
+              <button>
+                Xem hồ sơ
+                <i class="far fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+    <div class="col task-col">
+      <div class="task">
+        <span class="bar completed"></span>
+        <div class="details">
+          <div>Hoàn thành</div>
+          <p>6 task</p>
+        </div>
+        <i class="far fa-pen edit"></i>
+      </div>
+      <div class="task">
+        <span class="bar active"></span>
+        <div class="details">
+          <div>Active</div>
+          <p>1 task</p>
+        </div>
+        <i class="far fa-pen edit"></i>
+      </div>
+      <div class="task">
+        <span class="bar new"></span>
+        <div class="details">
+          <div>Assigned</div>
+          <p>12 task</p>
+        </div>
+        <i class="far fa-pen edit"></i>
+      </div>
+      <button>
+         <i class="far fa-plus"></i>
+         Tạo nhóm mới
+      </button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">Quản lý kho - Bán hoa quả</div>
+    <div class="card-body">
+      Trang web này cung cấp các tính năng quản lý kho để quản lý việc bán hoa quả. Bạn có thể thêm, sửa, xóa sản phẩm,
+      xem thông tin chi tiết về các sản phẩm, và nhiều tính năng khác.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">Thống kê doanh số</div>
+    <div class="card-body">
+      Thống kê doanh số sẽ cung cấp thông tin về số lượng sản phẩm bán được, doanh thu, lợi nhuận, và các chỉ số kinh
+      doanh khác để giúp bạn hiểu rõ hơn về hiệu suất kinh doanh của cửa hàng hoa quả.
+    </div>
+  </div>
+
