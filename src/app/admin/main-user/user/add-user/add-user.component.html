@@ -1,1 +1,115 @@
-<p>add-user works!</p>
+<div class="header-container">
+  <h1>Thêm mới người dùng</h1>
+</div>
+<form [formGroup]="UserForm" (ngSubmit)="onSubmit()">
+   <mat-form-field>
+    <input matInput placeholder="Tài khoản người dùng" formControlName="userName">
+    <mat-error *ngIf="UserForm.get('userName')?.hasError('required')">
+      Tên tài khoản không được để trống
+    </mat-error>
+  </mat-form-field>
+
+  <!-- <mat-form-field>
+    <mat-label>Mật khẩu</mat-label>
+    <input matInput placeholder="Mật khẩu" [type]="hide ? 'password' : 'text'" formControlName="password">
+    <button mat-icon-button matSuffix (click)="hide = !hide"
+      [attr.aria-label]="hide ? 'Hide password' : 'Show password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-error *ngIf="addUserForm.get('password')?.hasError('required')">
+      Mật khẩu không được để trống
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Email" formControlName="email">
+    <mat-error *ngIf="addUserForm.get('email')?.hasError('required')">
+      Email không được để trống
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Tên người dùng" formControlName="fullName">
+    <mat-error *ngIf="addUserForm.get('fullName')?.hasError('required')">
+      Mã nhân viên không được để trống
+    </mat-error>
+  </mat-form-field>
+
+
+    <mat-form-field>
+      <input matInput placeholder="Số điện thoại" formControlName="phone">
+      <mat-error *ngIf="addUserForm.get('phone')?.hasError('required')">
+        Số điện thoại không được để trống
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+    <input matInput placeholder="Thôn" formControlName="address">
+    <mat-error *ngIf="addUserForm.get('address')?.hasError('required')">
+      Tên nhân viên không được để trống
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Xã" formControlName="comune">
+    <mat-error *ngIf="addUserForm.get('comune')?.hasError('required')">
+      Số điện thoại không được để trống
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Huyện" formControlName="district">
+    <mat-error *ngIf="addUserForm.get('district')?.hasError('required')">
+      Số điện thoại không được để trống
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Thành phố" formControlName="city">
+    <mat-error *ngIf="addUserForm.get('city')?.hasError('required')">
+      Số điện thoại không được để trống
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Ngày sinh" type="date" formControlName="birthDay">
+    <mat-error *ngIf="addUserForm.get('birthDay')?.hasError('required')">
+      Ngày sinh không được để trống
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Giới tính</mat-label>
+    <mat-select formControlName="gender" placeholder="Chọn">
+      <mat-option [value]="0">Nam</mat-option>
+      <mat-option [value]="1">Nữ</mat-option>
+      <mat-option [value]="2">Khác</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Sử dụng</mat-label>
+    <mat-select formControlName="isActive" placeholder="Chọn">
+      <mat-option [value]="true">Sử dụng</mat-option>
+      <mat-option [value]="false">Không sử dụng</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Admin hay Người dùng</mat-label>
+    <mat-select formControlName="isAdmin" placeholder="Chọn">
+      <mat-option [value]="true">Có</mat-option>
+      <mat-option [value]="false">Không</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="edit-form">
+    <mat-label>Chọn tệp</mat-label>
+    <input matInput placeholder="Chọn tệp" readonly [value]="addUserForm.get('avartar')?.value">
+    <mat-icon matSuffix (click)="fileInput.click()">attach_file</mat-icon>
+    <input type="file" #fileInput style="display:none;" (change)="onFileSelected($event)">
+  </mat-form-field> -->
+
+
+
+  <button mat-raised-button style="margin-left: 1075px;" color="primary" type="submit">Thêm người dùng </button>
+</form>

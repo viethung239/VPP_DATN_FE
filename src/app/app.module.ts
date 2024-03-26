@@ -11,12 +11,17 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { SublevelMenuComponent } from './admin/sidenav/sublevel-menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { LoginComponent } from './login/login.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+
+
+
 
 
 
@@ -31,6 +36,9 @@ import { MatIconModule } from '@angular/material/icon';
     SublevelMenuComponent,
     LoginComponent,
 
+    //
+
+
 
 
   ],
@@ -39,8 +47,15 @@ import { MatIconModule } from '@angular/material/icon';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatIconModule,
+    MatPaginator,
+    MatPaginatorModule,
+    MatTableModule,
     MatButtonModule,
     FormsModule,
+    ///
+
+
 
 
   ],
