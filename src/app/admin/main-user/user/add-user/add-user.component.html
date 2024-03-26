@@ -2,77 +2,80 @@
   <h1>Thêm mới người dùng</h1>
 </div>
 <form [formGroup]="UserForm" (ngSubmit)="onSubmit()">
-   <mat-form-field>
+  <mat-form-field>
     <input matInput placeholder="Tài khoản người dùng" formControlName="userName">
     <mat-error *ngIf="UserForm.get('userName')?.hasError('required')">
       Tên tài khoản không được để trống
     </mat-error>
   </mat-form-field>
 
-  <!-- <mat-form-field>
+  <mat-form-field>
     <mat-label>Mật khẩu</mat-label>
     <input matInput placeholder="Mật khẩu" [type]="hide ? 'password' : 'text'" formControlName="password">
     <button mat-icon-button matSuffix (click)="hide = !hide"
       [attr.aria-label]="hide ? 'Hide password' : 'Show password'" [attr.aria-pressed]="hide">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
-    <mat-error *ngIf="addUserForm.get('password')?.hasError('required')">
+    <mat-error *ngIf="UserForm.get('password')?.hasError('required')">
       Mật khẩu không được để trống
     </mat-error>
   </mat-form-field>
 
   <mat-form-field>
     <input matInput placeholder="Email" formControlName="email">
-    <mat-error *ngIf="addUserForm.get('email')?.hasError('required')">
+    <mat-error *ngIf="UserForm.get('email')?.hasError('required')">
       Email không được để trống
     </mat-error>
   </mat-form-field>
 
   <mat-form-field>
     <input matInput placeholder="Tên người dùng" formControlName="fullName">
-    <mat-error *ngIf="addUserForm.get('fullName')?.hasError('required')">
+    <mat-error *ngIf="UserForm.get('fullName')?.hasError('required')">
       Mã nhân viên không được để trống
     </mat-error>
   </mat-form-field>
 
 
-    <mat-form-field>
-      <input matInput placeholder="Số điện thoại" formControlName="phone">
-      <mat-error *ngIf="addUserForm.get('phone')?.hasError('required')">
-        Số điện thoại không được để trống
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Số điện thoại" formControlName="phone">
+    <mat-error *ngIf="UserForm.get('phone')?.hasError('required')">
+      Số điện thoại không được để trống
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
     <input matInput placeholder="Thôn" formControlName="address">
-    <mat-error *ngIf="addUserForm.get('address')?.hasError('required')">
+    <mat-error *ngIf="UserForm.get('address')?.hasError('required')">
       Tên nhân viên không được để trống
     </mat-error>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Xã" formControlName="comune">
-    <mat-error *ngIf="addUserForm.get('comune')?.hasError('required')">
-      Số điện thoại không được để trống
-    </mat-error>
+    <mat-label>Xã</mat-label>
+    <mat-select formControlName="comune">
+      <mat-option *ngFor="let comune of communes" [value]="comune">{{ comune }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="UserForm.get('comune')?.hasError('required')">Xã không được để trống</mat-error>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Huyện" formControlName="district">
-    <mat-error *ngIf="addUserForm.get('district')?.hasError('required')">
-      Số điện thoại không được để trống
-    </mat-error>
+    <mat-label>Huyện</mat-label>
+    <mat-select formControlName="district">
+      <mat-option *ngFor="let district of districts" [value]="district">{{ district }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="UserForm.get('district')?.hasError('required')">Huyện không được để trống</mat-error>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Thành phố" formControlName="city">
-    <mat-error *ngIf="addUserForm.get('city')?.hasError('required')">
-      Số điện thoại không được để trống
-    </mat-error>
+    <mat-label>Thành phố</mat-label>
+    <mat-select formControlName="city">
+      <mat-option *ngFor="let city of cities" [value]="city">{{ city }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="UserForm.get('city')?.hasError('required')">Thành phố không được để trống</mat-error>
   </mat-form-field>
 
   <mat-form-field>
     <input matInput placeholder="Ngày sinh" type="date" formControlName="birthDay">
-    <mat-error *ngIf="addUserForm.get('birthDay')?.hasError('required')">
+    <mat-error *ngIf="UserForm.get('birthDay')?.hasError('required')">
       Ngày sinh không được để trống
     </mat-error>
   </mat-form-field>
@@ -102,14 +105,42 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field class="edit-form">
+
+ <mat-form-field class="edit-form">
     <mat-label>Chọn tệp</mat-label>
-    <input matInput placeholder="Chọn tệp" readonly [value]="addUserForm.get('avartar')?.value">
+    <input matInput placeholder="Chọn tệp" readonly [value]="UserForm.get('avartar')?.value">
     <mat-icon matSuffix (click)="fileInput.click()">attach_file</mat-icon>
     <input type="file" #fileInput style="display:none;" (change)="onFileSelected($event)">
-  </mat-form-field> -->
+    <img *ngIf="UserForm.get('avartar')?.value" [src]="'assets/' + UserForm.get('avartar')?.value" alt="Avatar" width="100" height="100">
+  </mat-form-field>
 
 
+  <!-- -->
+  <table class="tab-h" mat-table [dataSource]="dataSource">
 
-  <button mat-raised-button style="margin-left: 1075px;" color="primary" type="submit">Thêm người dùng </button>
+    <ng-container matColumnDef="roleId">
+      <th mat-header-cell *matHeaderCellDef> Tên quyền</th>
+      <td mat-cell *matCellDef="let element">
+        {{ getTenQuyen(element.roleId) }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="actions" >
+      <th mat-header-cell *matHeaderCellDef style="text-align: right;"> <a mat-flat-button color="warn" (click)="openDialog(userId)">
+           + Thêm
+          </a> </th>
+      <td mat-cell *matCellDef="let element" class="action-buttons" style="text-align: right;" >
+
+        <button mat-fab color="warn" (click)="deleteItem(element)" >
+          <mat-icon>delete</mat-icon >
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <div *ngIf="!userRole.length" style="text-align: center; margin-top: 20px;">
+    Người dùng cho có quyền nào
+  </div>
+  <button mat-raised-button color="primary" class="btn-them" type="submit" [disabled]="!UserRoles()">Thêm</button>
 </form>

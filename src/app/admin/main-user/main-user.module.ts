@@ -9,12 +9,14 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-
+import {MatInputModule} from '@angular/material/input';
 import { ListUserComponent } from './user/list-user/list-user.component';
 import { AddUserComponent } from './user/add-user/add-user.component';
 import { EditUserComponent } from './user/edit-user/edit-user.component';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { ListRoleComponent } from './role/list-role/list-role.component';
+import { UserRoleComponent } from './user/user-role/user-role.component';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ListRoleComponent } from './role/list-role/list-role.component';
     AddUserComponent,
     EditUserComponent,
     UserDetailComponent,
-    ListRoleComponent
+    ListRoleComponent,
+    UserRoleComponent,
+
   ],
   imports: [
     CommonModule,
@@ -30,15 +34,17 @@ import { ListRoleComponent } from './role/list-role/list-role.component';
     MatIconModule,
     MatPaginatorModule,
     MatTableModule,
+    MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatSelectModule,
     MatPaginator,
-    MatIconModule,
+
 
 
 
   ]
+
 })
 export class MainUserModule { }

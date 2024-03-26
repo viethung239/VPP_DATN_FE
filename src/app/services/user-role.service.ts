@@ -31,9 +31,9 @@ export class UserRoleService {
       })
     );
   }
-  addUserRole(newUserData: any): Observable<any> {
+  addUserRole(newUserRoleData: any): Observable<any> {
     const url = 'https://localhost:7287/api/UserRole';
-    return this.authService.sendProtectedRequestPost(url, newUserData);
+    return this.authService.sendProtectedRequestPost(url, newUserRoleData);
   }
   getUserRoleById(userRoleId: string): Observable<any> {
     const url = `https://localhost:7287/api/UserRole/${userRoleId}`;

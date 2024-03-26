@@ -1,0 +1,17 @@
+<form [formGroup]="UserRoleForm" class="example-form" >
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Chọn quyền</mat-label>
+    <mat-select placeholder="Chọn quyền" formControlName="roleId" >
+      <mat-option *ngFor="let role of Role" [value]="role.roleId">
+        {{ role.roleName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="dialog-actions">
+    <button mat-button (click)="closeDialog()">Đóng</button>
+    <button mat-button color="primary" (click)="confirmSelection()" >Xác nhận</button>
+  </div>
+</form>
+
