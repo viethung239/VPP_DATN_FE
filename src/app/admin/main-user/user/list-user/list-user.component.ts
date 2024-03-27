@@ -29,7 +29,8 @@ export class ListUserComponent {
   getDataUser(): void {
     this.userService.getListUser().subscribe({
       next: (data) => {
-
+        data.sort((a: UserData, b: UserData) => new Date(b.dateCreated).getTime() - new Date(a.dateCreated).getTime());
+        data.sort((a: UserData, b: UserData) => new Date(b.dateUpdated).getTime() - new Date(a.dateUpdated).getTime());
 
         this.dataSource.data = data;
         console.log(data);

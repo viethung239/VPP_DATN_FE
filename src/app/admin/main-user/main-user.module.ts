@@ -13,7 +13,7 @@ import {MatInputModule} from '@angular/material/input';
 import { ListUserComponent } from './user/list-user/list-user.component';
 import { AddUserComponent } from './user/add-user/add-user.component';
 import { EditUserComponent } from './user/edit-user/edit-user.component';
-import { UserDetailComponent } from './user/user-detail/user-detail.component';
+
 import { ListRoleComponent } from './role/list-role/list-role.component';
 import { UserRoleComponent } from './user/user-role/user-role.component';
 
@@ -23,7 +23,6 @@ import { UserRoleComponent } from './user/user-role/user-role.component';
     ListUserComponent,
     AddUserComponent,
     EditUserComponent,
-    UserDetailComponent,
     ListRoleComponent,
     UserRoleComponent,
 

@@ -39,4 +39,5 @@ export class UserRoleService {
     const url = `https://localhost:7287/api/UserRole/${userRoleId}`;
     return this.authService.sendProtectedRequestGetById(url);
   }
+
 }

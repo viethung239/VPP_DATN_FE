@@ -1,1 +1,135 @@
-<p>edit-user works!</p>
+<div class="header-container">
+  <h1>Thông tin người dùng</h1>
+  <button mat-fab color="primary" class="edit-btn" (click)="toggleEdit()">
+    <mat-icon>edit</mat-icon>
+  </button>
+</div>
+
+<div class="click-for-edit">
+<form [formGroup]="UserForm" (ngSubmit)="onSubmit()" >
+
+  <mat-form-field>
+    <input matInput placeholder="Email" formControlName="email" [readonly]="!isEditClicked">
+    <mat-error *ngIf="UserForm.get('email')?.hasError('required')">
+      Email không được để trống
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Tên người dùng" formControlName="fullName" [readonly]="!isEditClicked">
+    <mat-error *ngIf="UserForm.get('fullName')?.hasError('required')">
+      Mã nhân viên không được để trống
+    </mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field>
+    <input matInput placeholder="Số điện thoại" formControlName="phone" [readonly]="!isEditClicked" >
+    <mat-error *ngIf="UserForm.get('phone')?.hasError('required')">
+      Số điện thoại không được để trống
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Thôn" formControlName="address" [readonly]="!isEditClicked">
+    <mat-error *ngIf="UserForm.get('address')?.hasError('required')">
+      Tên nhân viên không được để trống
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Xã</mat-label>
+    <mat-select formControlName="comune" >
+      <mat-option *ngFor="let comune of communes" [value]="comune" [disabled]="!isEditClicked">{{ comune }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="UserForm.get('comune')?.hasError('required')">Xã không được để trống</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Huyện</mat-label>
+    <mat-select formControlName="district">
+      <mat-option *ngFor="let district of districts" [value]="district" [disabled]="!isEditClicked">{{ district }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="UserForm.get('district')?.hasError('required')">Huyện không được để trống</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Thành phố</mat-label>
+    <mat-select formControlName="city" >
+      <mat-option *ngFor="let city of cities" [value]="city" [disabled]="!isEditClicked">{{ city }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="UserForm.get('city')?.hasError('required')">Thành phố không được để trống</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Ngày sinh" type="date" formControlName="birthDay"
+           [value]="formatDate(UserForm.get('birthDay')?.value)" [readonly]="!isEditClicked" >
+    <mat-error *ngIf="UserForm.get('birthDay')?.hasError('required')">
+      Ngày sinh không được để trống
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Giới tính</mat-label>
+    <mat-select formControlName="gender"  placeholder="Chọn" >
+      <mat-option [value]="0" [disabled]="!isEditClicked">Nam</mat-option>
+      <mat-option [value]="1" [disabled]="!isEditClicked">Nữ</mat-option>
+      <mat-option [value]="2" [disabled]="!isEditClicked">Khác</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Sử dụng</mat-label>
+    <mat-select formControlName="isActive" placeholder="Chọn" >
+      <mat-option [value]="true" [disabled]="!isEditClicked">Sử dụng</mat-option>
+      <mat-option [value]="false" [disabled]="!isEditClicked">Không sử dụng</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Admin hay Người dùng</mat-label>
+    <mat-select  formControlName="isAdmin" placeholder="Chọn" >
+      <mat-option [value]="true" [disabled]="!isEditClicked">Có</mat-option>
+      <mat-option [value]="false" [disabled]="!isEditClicked">Không</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+ <mat-form-field class="edit-form" >
+    <mat-label>Chọn tệp</mat-label>
+    <input matInput placeholder="Chọn tệp" readonly [value]="UserForm.get('avartar')?.value" >
+    <mat-icon matSuffix (click)="fileInput.click()">attach_file</mat-icon>
+    <input type="file" #fileInput style="display:none;" (change)="onFileSelected($event)"  [disabled]="!isEditClicked">
+    <img *ngIf="UserForm.get('avartar')?.value" [src]="'assets/' + UserForm.get('avartar')?.value" alt="Avatar" width="100" height="100">
+  </mat-form-field>
+
+
+  <table class="tab-h" mat-table [dataSource]="userRoles">
+
+    <ng-container matColumnDef="roleId">
+      <th mat-header-cell *matHeaderCellDef> Tên quyền</th>
+      <td mat-cell *matCellDef="let element">
+        {{ getTenQuyen(element.roleId) }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="actions" >
+      <th mat-header-cell *matHeaderCellDef style="text-align: right;"> <a mat-flat-button color="warn" (click)="openDialog(userId!)" [disabled]="!isEditClicked">
+           + Thêm
+          </a> </th>
+      <td mat-cell *matCellDef="let element" class="action-buttons" style="text-align: right;" >
+
+        <button mat-fab color="warn" type="button" (click)="deleteItem(element)" [disabled]="!isEditClicked">
+          <mat-icon>delete</mat-icon >
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <div *ngIf="!userRoles.length" style="text-align: center; margin-top: 20px;">
+    Người dùng cho có quyền nào
+  </div>
+  <button mat-raised-button color="primary" class="btn-them" [disabled]="!UserRoles() || !isEditClicked" type="submit" >Sửa</button>
+</form>
+</div>
