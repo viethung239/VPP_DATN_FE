@@ -16,7 +16,10 @@ import { EditUserComponent } from './user/edit-user/edit-user.component';
 
 import { ListRoleComponent } from './role/list-role/list-role.component';
 import { UserRoleComponent } from './user/user-role/user-role.component';
-
+import { AddRoleComponent } from './role/add-role/add-role.component';
+import { EditRoleComponent } from './role/edit-role/edit-role.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,8 @@ import { UserRoleComponent } from './user/user-role/user-role.component';
     EditUserComponent,
     ListRoleComponent,
     UserRoleComponent,
+    AddRoleComponent,
+    EditRoleComponent,
 
   ],
   imports: [
@@ -40,7 +45,8 @@ import { UserRoleComponent } from './user/user-role/user-role.component';
     MatSelectModule,
     MatPaginator,
 
-
+    MatDatepickerModule,
+    MatNativeDateModule,
 
 
   ]

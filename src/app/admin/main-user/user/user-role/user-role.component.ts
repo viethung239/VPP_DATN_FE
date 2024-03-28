@@ -8,8 +8,8 @@ import { RoleService } from '../../../../services/role.service';
   styleUrl: './user-role.component.scss'
 })
 export class UserRoleComponent {
-  selectedRoleId: string ;
-  selectedRole: any;
+
+
   UserRoleForm: FormGroup;
   Role: any[] =[];
   selectedProductPrice: number | undefined;
@@ -20,7 +20,7 @@ export class UserRoleComponent {
 
     private fb: FormBuilder
     ) {
-    this.selectedRoleId = '';
+
 
     this.UserRoleForm = this.fb.group({
 

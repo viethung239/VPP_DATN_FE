@@ -1,0 +1,55 @@
+<div *ngIf="product" class="product-details-container mat-elevation-z2">
+  <h2>Tên Sản Phẩm: {{ product.productName }}</h2>
+  <div class="product-info">
+    <div class="product-image">
+      <mat-card>
+        <img style="max-height: 400px;" mat-card-image src="assets/{{ product.productImage }}" alt="{{ product.productName }} Image">
+      </mat-card>
+    </div>
+    <div class="details">
+      <mat-card>
+        <mat-card-content>
+          <mat-form-field class="example-full-width-price">
+            <mat-label>Giá</mat-label>
+            <input matInput [readonly]="true" >
+            {{ product.productPrice | currency:'VND' }}
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Ngày tạo</mat-label>
+            <input matInput [readonly]="true" >
+            {{ product.dateCreated| date:'dd/MM/yyyy HH:mm:ss' }}
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Ngày cập nhật</mat-label>
+            <input matInput [readonly]="true" >
+            {{ product.dateUpdated | date:'dd/MM/yyyy HH:mm:ss' }}
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Sử dụng</mat-label>
+            <mat-select [disabled]="true" [value]="product.isActive">
+              <mat-option [value]="true">Sử dụng</mat-option>
+              <mat-option [value]="false">Không sử dụng</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Danh mục sản phẩm</mat-label>
+            <mat-select [disabled]="true" [value]="product.categoryId">
+              <mat-option *ngFor="let category of Category" [value]="category.categoryId">
+                {{ category.categoryName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="example-full" >
+            <mat-label>Mô tả ngắn </mat-label>
+            <textarea matInput [readonly]="true">{{ product.sDescription }}</textarea>
+          </mat-form-field>
+          <mat-form-field class="example-full" >
+            <mat-label>Mô tả chính</mat-label>
+            <textarea matInput [readonly]="true">{{ product.lDescription }}</textarea>
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

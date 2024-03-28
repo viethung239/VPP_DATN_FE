@@ -37,10 +37,10 @@ export class AddUserComponent {
     this.UserForm = this.fb.group({
       userName: ['', Validators.required],
       password: ['', Validators.required],
-      email: ['', Validators.required],
+      email:['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@gmail.com$/)]],
       avartar: ['', Validators.required],
       fullName: ['', Validators.required],
-      phone: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       address: ['', Validators.required],
       comune: ['', Validators.required],
       district: ['', Validators.required],
@@ -69,6 +69,17 @@ export class AddUserComponent {
   getTenQuyen(roleId: string): string {
     const role = this.Role.find(c => c.roleId === roleId);
     return role ? role.roleName : '';
+  }
+  onPhoneNumberInput(event: any): void {
+    const value = event.target.value;
+    if (!/^\d*$/.test(value)) {
+
+      event.target.value = value.replace(/\D/g, '');
+    }
+
+    if (value.length > 10) {
+      event.target.value = value.slice(0, 10);
+    }
   }
   openDialog(userId: string): void {
     const dialogRef = this.dialog.open(UserRoleComponent, {

@@ -52,7 +52,7 @@ export class EditUserComponent {
     this.UserForm = this.fb.group({
 
       userId:this.userId,
-      email: ['', Validators.required],
+      email:['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@gmail.com$/)]],
       avartar: ['', Validators.required],
       fullName: ['', Validators.required],
       phone: ['', Validators.required],
@@ -71,6 +71,8 @@ export class EditUserComponent {
     this.getUserRolebyId(this.userId);
   }
 
+
+  //User
   getCurrentDateTime(): string {
     const now = new Date();
     return now.toISOString();
@@ -121,7 +123,17 @@ export class EditUserComponent {
       avartar: fileName
     });
   }
+  onPhoneNumberInput(event: any): void {
+    const value = event.target.value;
+    if (!/^\d*$/.test(value)) {
 
+      event.target.value = value.replace(/\D/g, '');
+    }
+
+    if (value.length > 10) {
+      event.target.value = value.slice(0, 10);
+    }
+  }
   onSubmit() {
     if (!this.userId) {
       console.error('Không thể cập nhật sản phẩm với userId là null.');
@@ -152,11 +164,12 @@ export class EditUserComponent {
 
     }
   }
+
+  //UserRoles
   sendUserRoles(): void {
-    // Lọc ra chỉ các quyền mới được thêm vào
+
     const newUserRoles = this.userRoles.filter(role => !role.userRoleId);
 
-    // Gửi chỉ các quyền mới lên máy chủ
     newUserRoles.forEach(ListUserRole => {
       this.userRoleService.addUserRole(ListUserRole).subscribe({
         next: () => {
@@ -168,7 +181,6 @@ export class EditUserComponent {
       });
     });
   }
-  ///
   deleteItem(element: UserRoles): void {
     console.log('Xóa mục:', element);
 

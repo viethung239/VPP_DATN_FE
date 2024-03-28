@@ -23,6 +23,10 @@ const routes: Routes = [
         path:'admin/nguoi-dung',
         loadChildren:() =>import('./admin/main-user/main-user.module').then(u => u.MainUserModule )
       },
+      {
+        path:'admin/san-pham',
+        loadChildren:() =>import('./admin/main-product/main-product.module').then(u => u.MainProductModule )
+      },
 
     ]
   },

@@ -1,0 +1,64 @@
+<div class="header-container">
+  <h1>Thêm mới người dùng</h1>
+</div>
+<form [formGroup]="ProductForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput placeholder="Tên sản phẩm" formControlName="productName">
+    <mat-error *ngIf="ProductForm.get('productName')?.hasError('required')">
+      Tên sản phẩm không được để trống
+    </mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field>
+    <input matInput placeholder="Giá sản phẩm" formControlName="productPrice" type="number" (input)="onInputChange($event)">
+    <mat-error *ngIf="ProductForm.get('productPrice')?.hasError('required')">
+     Giá sản phẩm không được để trống
+    </mat-error>
+    <mat-error *ngIf="ProductForm.get('productPrice')?.hasError('pattern')">
+     Giá sản phẩm phải là số
+    </mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field>
+    <mat-label>Danh mục sản phẩm</mat-label>
+    <mat-select formControlName="categoryId" placeholder="Chọn danh mục">
+      <mat-option *ngFor="let category of Category" [value]="category.categoryId">
+        {{ category.categoryName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Sử dụng</mat-label>
+    <mat-select formControlName="isActive" placeholder="Chọn">
+      <mat-option [value]="true">Sử dụng</mat-option>
+      <mat-option [value]="false">Không sử dụng</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+ <mat-form-field class="edit-form">
+    <mat-label>Chọn tệp</mat-label>
+    <input matInput placeholder="Chọn tệp" readonly [value]="ProductForm.get('productImage')?.value">
+    <mat-icon matSuffix (click)="fileInput.click()">attach_file</mat-icon>
+    <input type="file" #fileInput style="display:none;" (change)="onFileSelected($event)">
+    <img *ngIf="ProductForm.get('productImage')?.value" [src]="'assets/' + ProductForm.get('productImage')?.value" alt="Avatar" width="100" height="100">
+  </mat-form-field>
+  <mat-form-field>
+
+    <textarea matInput placeholder="Mô tả ngắn" formControlName="sDescription"></textarea>
+    <mat-error *ngIf="ProductForm.get('sDescription')?.hasError('required')">
+      Mô tả ngắn không đưuọc để trống
+    </mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field>
+    <textarea matInput placeholder="Mô tả chính" formControlName="lDescription"></textarea>
+    <mat-error *ngIf="ProductForm.get('lDescription')?.hasError('required')">
+      Mổ tả không được để trống
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" class="btn-them" type="submit">Thêm</button>
+</form>

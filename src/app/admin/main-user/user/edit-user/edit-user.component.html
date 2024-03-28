@@ -8,13 +8,16 @@
 <div class="click-for-edit">
 <form [formGroup]="UserForm" (ngSubmit)="onSubmit()" >
 
+
   <mat-form-field>
     <input matInput placeholder="Email" formControlName="email" [readonly]="!isEditClicked">
     <mat-error *ngIf="UserForm.get('email')?.hasError('required')">
       Email không được để trống
     </mat-error>
+    <mat-error *ngIf="UserForm.get('email')?.hasError('pattern')">
+      Email phải có định dạng gmail.com
+    </mat-error>
   </mat-form-field>
-
   <mat-form-field>
     <input matInput placeholder="Tên người dùng" formControlName="fullName" [readonly]="!isEditClicked">
     <mat-error *ngIf="UserForm.get('fullName')?.hasError('required')">
@@ -24,7 +27,7 @@
 
 
   <mat-form-field>
-    <input matInput placeholder="Số điện thoại" formControlName="phone" [readonly]="!isEditClicked" >
+    <input matInput placeholder="Số điện thoại" formControlName="phone" (input)="onPhoneNumberInput($event)" [readonly]="!isEditClicked">
     <mat-error *ngIf="UserForm.get('phone')?.hasError('required')">
       Số điện thoại không được để trống
     </mat-error>
@@ -60,9 +63,11 @@
     <mat-error *ngIf="UserForm.get('city')?.hasError('required')">Thành phố không được để trống</mat-error>
   </mat-form-field>
 
+
   <mat-form-field>
-    <input matInput placeholder="Ngày sinh" type="date" formControlName="birthDay"
-           [value]="formatDate(UserForm.get('birthDay')?.value)" [readonly]="!isEditClicked" >
+    <input matInput placeholder="Ngày sinh" [matDatepicker]="picker" formControlName="birthDay" [readonly]="!isEditClicked">
+    <mat-datepicker-toggle matSuffix [for]="picker" [disabled]="!isEditClicked"></mat-datepicker-toggle>
+    <mat-datepicker #picker ></mat-datepicker>
     <mat-error *ngIf="UserForm.get('birthDay')?.hasError('required')">
       Ngày sinh không được để trống
     </mat-error>
