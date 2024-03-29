@@ -1,0 +1,38 @@
+<div class="header-container">
+  <h1>Sửa sản phẩm</h1>
+</div>
+<form [formGroup]="CategoryForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="full">
+    <input matInput placeholder="Tên danh mục" formControlName="categoryName">
+    <mat-error *ngIf="CategoryForm.get('categoryName')?.hasError('required')">
+      Tên sản phẩm không được để trống
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Danh mục nhóm sản phẩm</mat-label>
+    <mat-select formControlName="categoryGroupId" placeholder="Chọn nhóm danh mục">
+      <ng-container *ngFor="let categoryg of CategoryGroup">
+        <mat-option *ngIf="categoryg.isActive" [value]="categoryg.categoryGroupId">
+          {{ categoryg.categoryGroupName }}
+        </mat-option>
+      </ng-container>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Sử dụng</mat-label>
+    <mat-select formControlName="isActive" placeholder="Chọn">
+      <mat-option [value]="true">Sử dụng</mat-option>
+      <mat-option [value]="false">Không sử dụng</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+ <mat-form-field class="add-form">
+    <mat-label>Chọn tệp</mat-label>
+    <input matInput placeholder="Chọn tệp" readonly [value]="CategoryForm.get('categoryImg')?.value">
+    <mat-icon matSuffix (click)="fileInput.click()">attach_file</mat-icon>
+    <input type="file" #fileInput style="display:none;" (change)="onFileSelected($event)">
+    <img *ngIf="CategoryForm.get('categoryImg')?.value" [src]="'assets/' + CategoryForm.get('categoryImg')?.value" width="100" height="100">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" class="btn-them" type="submit">Sửa</button>
+</form>

@@ -33,7 +33,7 @@ export class ListProductComponent {
 
       },
       error: (error: any) => {
-        console.error('Error fetching branch:', error);
+        console.error('Error fetching category:', error);
       }
     });
 

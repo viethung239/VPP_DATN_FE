@@ -4,7 +4,7 @@ import { ProductService } from '../../../../services/product.service';
 import { CategoryService } from '../../../../services/category.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-add-product',

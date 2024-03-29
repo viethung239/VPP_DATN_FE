@@ -24,9 +24,11 @@
   <mat-form-field>
     <mat-label>Danh mục sản phẩm</mat-label>
     <mat-select formControlName="categoryId" placeholder="Chọn danh mục">
-      <mat-option *ngFor="let category of Category" [value]="category.categoryId">
-        {{ category.categoryName }}
-      </mat-option>
+      <ng-container *ngFor="let category of Category">
+        <mat-option *ngIf="category.isActive" [value]="category.categoryId">
+          {{ category.categoryName }}
+        </mat-option>
+      </ng-container>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
@@ -42,7 +44,7 @@
     <input matInput placeholder="Chọn tệp" readonly [value]="ProductForm.get('productImage')?.value">
     <mat-icon matSuffix (click)="fileInput.click()">attach_file</mat-icon>
     <input type="file" #fileInput style="display:none;" (change)="onFileSelected($event)">
-    <img *ngIf="ProductForm.get('productImage')?.value" [src]="'assets/' + ProductForm.get('productImage')?.value" alt="Avatar" width="100" height="100">
+    <img *ngIf="ProductForm.get('productImage')?.value" [src]="'assets/' + ProductForm.get('productImage')?.value" width="100" height="100">
   </mat-form-field>
   <mat-form-field>
 

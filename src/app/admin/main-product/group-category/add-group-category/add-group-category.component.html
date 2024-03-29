@@ -1,0 +1,24 @@
+
+<form [formGroup]="CategoryGroupForm" class="example-form">
+
+  <mat-form-field class="add-form">
+    <input matInput placeholder="Tên nhóm danh mục" formControlName="categoryGroupName">
+    <mat-error *ngIf="CategoryGroupForm.get('categoryGroupName')?.hasError('required')">
+      Tên nhóm danh mục không được để trống
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="add-form">
+    <mat-select formControlName="isActive" placeholder="Chọn">
+      <mat-option [value]="true">Sử dụng</mat-option>
+      <mat-option [value]="false">Không sử dụng</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="dialog-actions">
+    <button mat-button (click)="closeDialog()">Đóng</button>
+    <button mat-button color="primary" (click)="confirm()" >Xác nhận</button>
+  </div>
+</form>
+
+
+

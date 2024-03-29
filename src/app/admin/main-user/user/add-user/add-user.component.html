@@ -117,7 +117,7 @@
     <input matInput placeholder="Chọn tệp" readonly [value]="UserForm.get('avartar')?.value">
     <mat-icon matSuffix (click)="fileInput.click()">attach_file</mat-icon>
     <input type="file" #fileInput style="display:none;" (change)="onFileSelected($event)">
-    <img *ngIf="UserForm.get('avartar')?.value" [src]="'assets/' + UserForm.get('avartar')?.value" alt="Avatar" width="100" height="100">
+    <img *ngIf="UserForm.get('avartar')?.value" [src]="'assets/' + UserForm.get('avartar')?.value"  width="100" height="100">
   </mat-form-field>
 
 

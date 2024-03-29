@@ -19,12 +19,12 @@ export const navbarData: INavbarData[] = [
 
         },
         {
-            routeLink: 'admin/san-pham/danh-sach-danh-muc-san-pham',
-            label: 'Danh sách danh mục sản phẩm',
+            routeLink: 'admin/san-pham/danh-sach-danh-muc',
+            label: 'Danh sách danh mục ',
         },
         {
-          routeLink: 'admin/san-pham/danh-sach-nhom-danh-muc-san-pham',
-          label: 'Danh sách nhóm danh mục sản phẩm',
+          routeLink: 'admin/san-pham/danh-sach-nhom-danh-muc',
+          label: 'Danh sách nhóm danh mục ',
         }
     ]
   },

@@ -17,16 +17,26 @@ import { EditProductComponent } from './product/edit-product/edit-product.compon
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 import { ListCategoryComponent } from './category/list-category/list-category.component';
 import { MatCardModule } from '@angular/material/card';
+import { AddCategoryComponent } from './category/add-category/add-category.component';
+import { ListGroupCategoryComponent } from './group-category/list-group-category/list-group-category.component';
+import { EditCategoryComponent } from './category/edit-category/edit-category.component';
+import { AddGroupCategoryComponent } from './group-category/add-group-category/add-group-category.component';
+import { EditGroupCategoryComponent } from './group-category/edit-group-category/edit-group-category.component';
 
 @NgModule({
   declarations: [
+        ListProductComponent,
+        AddProductComponent,
+        EditProductComponent,
+        ProductDetailComponent,
+        ListCategoryComponent,
+        AddCategoryComponent,
+        ListGroupCategoryComponent,
+        EditCategoryComponent,
+        AddGroupCategoryComponent,
+        EditGroupCategoryComponent
 
 
-    ListProductComponent,
-         AddProductComponent,
-         EditProductComponent,
-         ProductDetailComponent,
-         ListCategoryComponent
   ],
   imports: [
     CommonModule,

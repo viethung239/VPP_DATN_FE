@@ -13,7 +13,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class AddRoleComponent {
   RoleForm: FormGroup;
 
-  selectedProductPrice: number | undefined;
 
   constructor(
 
