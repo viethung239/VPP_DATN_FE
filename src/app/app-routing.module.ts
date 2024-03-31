@@ -27,6 +27,10 @@ const routes: Routes = [
         path:'admin/san-pham',
         loadChildren:() =>import('./admin/main-product/main-product.module').then(u => u.MainProductModule )
       },
+      {
+        path:'admin/bai-viet',
+        loadChildren:() =>import('./admin/main-post/main-post.module').then(u => u.MainPostModule )
+      },
 
     ]
   },

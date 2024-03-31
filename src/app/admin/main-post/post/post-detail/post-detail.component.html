@@ -1,0 +1,50 @@
+<div *ngIf="post" class="product-details-container mat-elevation-z2">
+  <h2>Bài viết: {{ post.postName }}</h2>
+  <div class="product-info">
+    <div class="product-image">
+      <mat-card>
+        <img style="max-height: 400px;" mat-card-image src="assets/{{ post.postImg }}" Image>
+      </mat-card>
+    </div>
+    <div class="details">
+      <mat-card>
+        <mat-card-content>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Ngày tạo</mat-label>
+            <input matInput [readonly]="true" >
+            {{ post.dateCreated| date:'dd/MM/yyyy HH:mm:ss' }}
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Ngày cập nhật</mat-label>
+            <input matInput [readonly]="true" >
+            {{ post.dateUpdated | date:'dd/MM/yyyy HH:mm:ss' }}
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Sử dụng</mat-label>
+            <mat-select [disabled]="true" [value]="post.isActive">
+              <mat-option [value]="true">Sử dụng</mat-option>
+              <mat-option [value]="false">Không sử dụng</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Tác giả</mat-label>
+            <mat-select [disabled]="true" [value]="post.userId">
+              <mat-option *ngFor="let user of User" [value]="user.userId">
+                {{ user.fullName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="example-full" >
+            <mat-label>Mô tả ngắn </mat-label>
+            <textarea matInput [readonly]="true">{{ post.sContent }}</textarea>
+          </mat-form-field>
+          <mat-form-field class="example-full" >
+            <mat-label>Mô tả chính</mat-label>
+            <textarea matInput [readonly]="true">{{ post.lContent }}</textarea>
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

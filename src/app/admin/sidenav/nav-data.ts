@@ -62,9 +62,9 @@ export const navbarData: INavbarData[] = [
     ]
 },
 {
-  routeLink: 'admin/chi-nhanh',
-  icon: 'fal fa-city',
-  label: 'Chi Nhánh',
+  routeLink: 'admin/bai-viet',
+  icon: 'fal fa-newspaper',
+  label: 'Bài viết',
   roles: ['User','Admin'],
 },
 {

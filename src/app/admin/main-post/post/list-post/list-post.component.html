@@ -1,0 +1,70 @@
+<div class="header-container">
+  <h1>Bài Viết</h1>
+  <div class="addbtn">
+    <button mat-fab color="primary" [routerLink]="'them-bai-viet'" routerLinkActive="active">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="stt">
+      <th mat-header-cell *matHeaderCellDef>STT</th>
+      <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="userId">
+      <th mat-header-cell *matHeaderCellDef> Tác giả</th>
+      <td mat-cell *matCellDef="let element">
+        {{ getTenTacGia(element.userId) }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="postName">
+      <th mat-header-cell *matHeaderCellDef> Tên bài viết </th>
+      <td mat-cell *matCellDef="let element"> {{element.postName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sContent">
+      <th mat-header-cell *matHeaderCellDef> Mô tả ngắn </th>
+      <td mat-cell *matCellDef="let element"> {{element.sContent }} </td>
+    </ng-container>
+    <ng-container matColumnDef="postImg">
+      <th mat-header-cell *matHeaderCellDef> Hình Ảnh </th>
+      <td mat-cell *matCellDef="let element">
+        <img style="max-height: 100px; border-radius: 100px;" [src]="'assets/' + element.postImg">
+    </ng-container>
+
+    <ng-container matColumnDef="dateCreated">
+      <th mat-header-cell *matHeaderCellDef> Ngày Tạo </th>
+      <td mat-cell *matCellDef="let element"> {{element.dateCreated| date:'yyyy-MM-dd HH:mm:ss'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateUpdated">
+      <th mat-header-cell *matHeaderCellDef> Ngày Cập Nhật </th>
+      <td mat-cell *matCellDef="let element"> {{element.dateCreated| date:'yyyy-MM-dd HH:mm:ss'}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center;"> # </th>
+      <td mat-cell *matCellDef="let element" class="action-buttons" style="text-align: center;">
+        <button mat-fab color="primary" [routerLink]="['sua-bai-viet', element.postId]">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-fab color="warn" (click)="deleteItem(element)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-fab  [routerLink]="['chi-tiet-bai-viet', element.postId]">
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[8, 16, 24]" showFirstLastButtons aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
+
