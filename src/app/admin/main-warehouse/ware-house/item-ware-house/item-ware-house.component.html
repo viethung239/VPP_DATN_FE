@@ -1,0 +1,34 @@
+<form [formGroup]="WHDTForm" class="example-form" >
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Chọn sản phẩm</mat-label>
+    <mat-select placeholder="Chọn sản phẩm" formControlName="productId" >
+      <ng-container *ngFor="let product of Product">
+      <mat-option *ngIf="product.isActive" [value]="product.productId">
+        {{ product.productName }}
+      </mat-option>
+    </ng-container>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Chọn nhà cung cấp</mat-label>
+    <mat-select placeholder="Chọn nhà cung cấp" formControlName="supplierId" >
+      <ng-container *ngFor="let supplier of Supplier">
+      <mat-option *ngIf="supplier.isActive" [value]="supplier.supplierId">
+        {{ supplier.supplierName }}
+      </mat-option>
+    </ng-container>
+    </mat-select>
+  </mat-form-field>
+  <button mat-button (click)="giamSoLuong()">-</button>
+  <mat-form-field class="example-width-a">
+    <input matInput  formControlName="quantity" [readonly]="true">
+  </mat-form-field>
+  <button mat-button (click)="tangSoLuong()">+</button>
+  <div class="dialog-actions">
+    <button mat-button (click)="closeDialog()">Đóng</button>
+    <button mat-button color="primary" (click)="confirmSelection()" >Xác nhận</button>
+  </div>
+</form>
+

@@ -97,14 +97,7 @@ export const navbarData: INavbarData[] = [
         routeLink: 'admin/kho/danh-sach-kho',
         label: 'Danh sách kho'
       },
-        {
-            routeLink: 'admin/kho/danh-muc-kho',
-            label: 'Danh mục kho'
-        },
-        {
-            routeLink: 'admin/kho/kho-chi-tiet',
-            label: 'Kho chi tiết'
-        }
+
     ]
 
 },

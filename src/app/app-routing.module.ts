@@ -31,6 +31,14 @@ const routes: Routes = [
         path:'admin/bai-viet',
         loadChildren:() =>import('./admin/main-post/main-post.module').then(u => u.MainPostModule )
       },
+      {
+        path:'admin/nha-cung-cap',
+        loadChildren:() =>import('./admin/main-supplier/supplier.module').then(u => u.SupplierModule )
+      },
+      {
+        path:'admin/kho',
+        loadChildren:() =>import('./admin/main-warehouse/main-warehouse.module').then(u => u.MainWarehouseModule )
+      },
 
     ]
   },

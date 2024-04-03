@@ -5,6 +5,7 @@ import { AddPostComponent } from './post/add-post/add-post.component';
 import { EditPostComponent } from './post/edit-post/edit-post.component';
 import { PostDetailComponent } from './post/post-detail/post-detail.component';
 
+
 const routes: Routes = [
 
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
     path: 'sua-bai-viet/:id',
     component: EditPostComponent
   },
+
   {
     path: 'chi-tiet-bai-viet/:id',
     component: PostDetailComponent

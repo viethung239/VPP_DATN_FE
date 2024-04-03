@@ -1,0 +1,71 @@
+
+<form [formGroup]="SupplierForm" class="example-form" (ngSubmit)="onSubmit()" >
+
+  <mat-form-field class="add-form">
+    <input matInput placeholder="Tên nhà cung cấp" formControlName="supplierName">
+    <mat-error *ngIf="SupplierForm.get('supplierName')?.hasError('required')">
+      Tên nhà cung cấp không được để trống
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Email" formControlName="email">
+    <mat-error *ngIf="SupplierForm.get('email')?.hasError('required')">
+      Email không được để trống
+    </mat-error>
+    <mat-error *ngIf="SupplierForm.get('email')?.hasError('pattern')">
+      Email phải có định dạng gmail.com
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Số điện thoại" formControlName="phone" (input)="onPhoneNumberInput($event)">
+    <mat-error *ngIf="SupplierForm.get('phone')?.hasError('required')">
+      Số điện thoại không được để trống
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Thôn" formControlName="address">
+    <mat-error *ngIf="SupplierForm.get('address')?.hasError('required')">
+      Tên nhân viên không được để trống
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Xã</mat-label>
+    <mat-select formControlName="comune">
+      <mat-option *ngFor="let comune of communes" [value]="comune">{{ comune }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="SupplierForm.get('comune')?.hasError('required')">Xã không được để trống</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Huyện</mat-label>
+    <mat-select formControlName="district">
+      <mat-option *ngFor="let district of districts" [value]="district">{{ district }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="SupplierForm.get('district')?.hasError('required')">Huyện không được để trống</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Thành phố</mat-label>
+    <mat-select formControlName="city">
+      <mat-option *ngFor="let city of cities" [value]="city">{{ city }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="SupplierForm.get('city')?.hasError('required')">Thành phố không được để trống</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="add-form">
+
+    <mat-select formControlName="isActive" placeholder="Chọn">
+      <mat-option [value]="true">Sử dụng</mat-option>
+      <mat-option [value]="false">Không sử dụng</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+<button mat-raised-button color="primary" class="btn-them" type="submit">Thêm</button>
+</form>
+
+
