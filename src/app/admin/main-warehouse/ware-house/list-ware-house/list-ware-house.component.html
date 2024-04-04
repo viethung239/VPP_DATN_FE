@@ -1,5 +1,5 @@
 <div class="header-container">
-  <h1>NGƯỜI DÙNG</h1>
+  <h1>Danh sách kho</h1>
   <div class="addbtn">
     <button mat-fab color="primary" [routerLink]="'them-kho'" routerLinkActive="active">
       <mat-icon>add</mat-icon>
@@ -37,7 +37,7 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef style="text-align: center;"> # </th>
       <td mat-cell *matCellDef="let element" class="action-buttons" style="text-align: center;">
-        <button mat-fab color="primary" [routerLink]="['thong-tin-kho', element.userId]">
+        <button mat-fab color="primary" [routerLink]="['thong-tin-kho', element.wareHouseId]">
           <mat-icon>visibility</mat-icon>
         </button>
         <button mat-fab color="warn" (click)="deleteItem(element)">

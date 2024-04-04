@@ -1,0 +1,14 @@
+
+<form [formGroup]="WHDTForm" class="example-form" >
+
+  <button mat-button (click)="giamSoLuong()">-</button>
+  <mat-form-field class="example-width-a">
+    <input matInput  formControlName="quantity" [readonly]="true">
+  </mat-form-field>
+  <button mat-button (click)="tangSoLuong()">+</button>
+  <div class="dialog-actions">
+    <button mat-button (click)="closeDialog()">Đóng</button>
+    <button mat-button color="primary" (click)="confirm()" >Xác nhận</button>
+  </div>
+</form>
+

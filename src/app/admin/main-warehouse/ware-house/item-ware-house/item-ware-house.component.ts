@@ -20,7 +20,7 @@ export class ItemWareHouseComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
       private dialogRef: MatDialogRef<ItemWareHouseComponent>,
-      private wareHouseDetailService : WareHouseDetailsService,
+
       private productService:ProductService,
       private suppilerService: SupplierService,
       private fb: FormBuilder

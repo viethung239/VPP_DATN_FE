@@ -81,9 +81,20 @@ export class AddWareHouseComponent {
     dialogRef.componentInstance.selectionConfirmed.subscribe((result) => {
       console.log('Dữ liệu:', result);
       if (result) {
-        this.wareHouseDetail.push(result);
-        this.dataSource.data = this.wareHouseDetail;
+        // Kiểm tra xem sản phẩm đã tồn tại trong kho chưa
+        const existingIndex = this.wareHouseDetail.findIndex(item =>
+          item.productId === result.productId && item.supplierId === result.supplierId);
 
+        if (existingIndex !== -1) {
+          // Nếu sản phẩm đã tồn tại, cập nhật số lượng
+          this.wareHouseDetail[existingIndex].quantity += result.quantity;
+        } else {
+          // Nếu sản phẩm chưa tồn tại, thêm mới
+          this.wareHouseDetail.push(result);
+        }
+
+        // Cập nhật lại dataSource
+        this.dataSource.data = this.wareHouseDetail;
       }
     });
 
@@ -154,7 +165,7 @@ export interface WareHouseDetail {
   wareHouseId:  string,
   productId: string,
   supplierId: string,
-  quantity:string,
+  quantity:number,
   isActive: string,
   dateCreated: string,
   dateUpdated: string,

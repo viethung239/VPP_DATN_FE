@@ -14,13 +14,17 @@ import { ListWareHouseComponent } from './ware-house/list-ware-house/list-ware-h
 import { AddWareHouseComponent } from './ware-house/add-ware-house/add-ware-house.component';
 import { ItemWareHouseComponent } from './ware-house/item-ware-house/item-ware-house.component';
 import { MatInputModule } from '@angular/material/input';
+import { DetailsWarehouseComponent } from './ware-house/details-warehouse/details-warehouse.component';
+import { EditItemComponent } from './ware-house/edit-item/edit-item.component';
 
 
 @NgModule({
   declarations: [
     ListWareHouseComponent,
     AddWareHouseComponent,
-    ItemWareHouseComponent
+    ItemWareHouseComponent,
+    DetailsWarehouseComponent,
+    EditItemComponent
   ],
   imports: [
     CommonModule,
