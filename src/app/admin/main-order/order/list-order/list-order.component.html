@@ -1,0 +1,58 @@
+<div class="header-container">
+  <h1>Danh sách đơn hàng</h1>
+</div>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="orderCode">
+      <th mat-header-cell *matHeaderCellDef>Mã đơn hàng</th>
+      <td mat-cell *matCellDef="let element">{{ element.orderCode }}</td>
+    </ng-container>
+    <ng-container matColumnDef="userId">
+      <th mat-header-cell *matHeaderCellDef> Tên khách</th>
+      <td mat-cell *matCellDef="let element">
+        {{ getTenKhach(element.userId) }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="userPhone">
+      <th mat-header-cell *matHeaderCellDef> Số điện thoại khách</th>
+      <td mat-cell *matCellDef="let element">
+        {{ getSDTKhach(element.userId) }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Trang thái giao hàng</th>
+      <td mat-cell *matCellDef="let element"> {{ getStatus(element.status) }} </td>
+    </ng-container>
+    <ng-container matColumnDef="paymentType">
+      <th mat-header-cell *matHeaderCellDef>Kiểu thanh toán</th>
+      <td mat-cell *matCellDef="let element"> {{element.paymentType ? 'Thanh toán qua ngân hàng' : 'Thanh toán khi nhận hàng'}} </td>
+    </ng-container>
+    <ng-container matColumnDef="dateCreated">
+      <th mat-header-cell *matHeaderCellDef> Ngày Tạo đơn </th>
+      <td mat-cell *matCellDef="let element"> {{element.dateCreated| date:'yyyy-MM-dd HH:mm:ss'}} </td>
+    </ng-container>
+    <ng-container matColumnDef="dateUpdated">
+      <th mat-header-cell *matHeaderCellDef> Ngày cập nhật</th>
+      <td mat-cell *matCellDef="let element"> {{element.dateUpdated | date:'yyyy-MM-dd HH:mm:ss'}} </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef style="text-align: center;"> # </th>
+      <td mat-cell *matCellDef="let element" class="action-buttons" style="text-align: center;">
+        <button mat-fab color="primary" (click)="openDialogEdit(element.orderId)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-fab color="warn" (click)="deleteItem(element)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-fab  [routerLink]="['chi-tiet-don-hang', element.orderId]">
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[8, 16, 24]" showFirstLastButtons aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>

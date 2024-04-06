@@ -39,6 +39,10 @@ const routes: Routes = [
         path:'admin/kho',
         loadChildren:() =>import('./admin/main-warehouse/main-warehouse.module').then(u => u.MainWarehouseModule )
       },
+      {
+        path:'admin/don-hang',
+        loadChildren:() =>import('./admin/main-order/main-order.module').then(u => u.MainOrderModule )
+      },
 
     ]
   },

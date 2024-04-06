@@ -1,0 +1,68 @@
+<div class="header-container">
+  <h1>Đơn hàng: <span>{{order?.orderCode}}</span></h1>
+</div>
+<form>
+  <mat-form-field class="example-full-width">
+    <mat-label>Tên khách hàng</mat-label>
+    <input matInput [readonly]="true" [value]="orderFullName" >
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Số điện thoại khách</mat-label>
+    <input matInput [readonly]="true" [value]="orderPhone" >
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Kiểu thanh toán</mat-label>
+    <mat-select placeholder="Chọn" disabled="true" [value]="order?.paymentType">
+      <mat-option [value]="0">Thanh toán khi nhận hàng</mat-option>
+      <mat-option [value]="1">Thánh toán qua ngân hàng</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Tổng tiền</mat-label>
+    <input matInput  [readonly]="true" [value]="order?.totalAmount | currency:'VND'">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Địa chỉ</mat-label>
+    <textarea matInput [readonly]="true">{{userAddress }} - {{ userComune }} - {{userDistrict}} - {{ userCity }} </textarea>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Ghi chú của đơn hàng</mat-label>
+    <textarea matInput [readonly]="true">{{ order?.note }}</textarea>
+  </mat-form-field>
+
+
+  <table class="tab-h" mat-table [dataSource]="orderdetails">
+
+    <ng-container matColumnDef="productId">
+      <th mat-header-cell *matHeaderCellDef> Tên sản phẩm</th>
+      <td mat-cell *matCellDef="let element">
+        {{ getTenSanPham(element.productId) }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Giá</th>
+      <td mat-cell *matCellDef="let element"> {{ element.price | currency:'VND'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef>Số lượng</th>
+      <td mat-cell *matCellDef="let element"> {{ element.quantity }} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef>Tổng tiền</th>
+      <td mat-cell *matCellDef="let element" > {{ element.total | currency:'VND'}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+
+</form>
+
