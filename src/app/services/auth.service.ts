@@ -99,7 +99,11 @@ export class AuthService {
       localStorage.removeItem('token');
     }
   }
-
+  changePassword(currentPassword: string, newPassword: string): Observable<any> {
+    const changePasswordDto = { currentPassword, newPassword };
+    const url = 'https://localhost:7287/api/Auth/doi-mat-khau';
+    return this.sendProtectedRequestPost(url, changePasswordDto);
+  }
 
   getRolesFromToken(): string[] {
     if (this.isLocalStorageAvailable()) {
@@ -118,6 +122,20 @@ export class AuthService {
 
     });
   }
-
+  getToken(): string | null {
+    return this.isLocalStorageAvailable() ? localStorage.getItem('token') : null;
+  }
+  getUserInfoFromToken(): any {
+    const token = this.getToken();
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      return {
+        userId: decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/dsa'],
+        roles: decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'],
+        decodedToken: decodedToken
+      };
+    }
+    return null;
+  }
 
 }

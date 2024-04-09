@@ -52,7 +52,7 @@ export const navbarData: INavbarData[] = [
     roles: ['User','Admin'],
     items: [
         {
-            routeLink: 'admin/chinh-sua/ho-so',
+            routeLink: 'admin/cai-dat/ho-so',
             label: 'Hồ Sơ'
         },
         {

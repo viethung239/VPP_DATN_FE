@@ -1,5 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,25 +9,40 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-  TenNV: string | undefined;
+  FullName: string | undefined;
   Role : string | undefined;
   Avatar : string | undefined;
   innerWidth : any;
   constructor(
-    private jwtHelper: JwtHelperService) {
+    private jwtHelper: JwtHelperService,
+    private authService:AuthService,
+    private userService : UserService,) {
 
   }
   ngOnInit(): void {
+
+    const userInfo = this.authService.getUserInfoFromToken();
+    if (userInfo) {
+      const userId = userInfo.userId;
+      this.userService.getUserById(userId).subscribe({
+        next: (userData: any) => {
+          this.FullName = userData.fullName;
+          this.Avatar = userData.avartar;
+        },
+        error: (error: any) => {
+          console.error('Lỗi khi lấy thông tin người dùng:', error);
+        }
+      });
+    }
 
     if (typeof localStorage !== 'undefined') {
       const token = localStorage.getItem('token');
       if (token) {
         const decodedToken = this.jwtHelper.decodeToken(token);
-        this.TenNV = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
-        this.Role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
-        this.Avatar = decodedToken ['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/actor']
-        console.log('Token khi dịch', decodedToken);
 
+        this.Role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+
+        console.log('Token khi dịch', decodedToken);
       }
     }
     this.innerWidth = window.innerWidth;

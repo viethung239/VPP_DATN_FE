@@ -1,0 +1,53 @@
+.profile-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+
+}
+.avatar-container {
+  position: relative;
+}
+
+.camera-icon {
+  position: absolute;
+  bottom: -50px;
+  right: -45px;
+  font-size: 25px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 25%;
+
+}
+mat-card-header{
+  margin-bottom: 45px;
+}
+.title{
+  margin-left: 64px;
+}
+.text-right {
+  text-align: right;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-right: 10px;
+}
+
+.tab-pane{
+  margin-left: 10px;
+  margin-top: 20px;
+}
+.example-width{
+  width: 45%;
+  margin-left: 30px;
+
+}
+.edit-btn{
+    margin-right: 5px;
+    transform: scale(0.9);
+}
+.example-width-mk{
+  width: 80%;
+  margin-left: 40px;
+  margin-top: 20px;
+
+}

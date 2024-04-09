@@ -43,6 +43,10 @@ const routes: Routes = [
         path:'admin/don-hang',
         loadChildren:() =>import('./admin/main-order/main-order.module').then(u => u.MainOrderModule )
       },
+      {
+        path:'admin/cai-dat',
+        loadChildren:() =>import('./admin/main-setting/main-setting.module').then(u => u.MainSettingModule )
+      },
 
     ]
   },

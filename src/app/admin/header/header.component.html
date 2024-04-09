@@ -25,24 +25,27 @@
             <i class="far fa-sign-out menu-icon"></i>
           </button>
         </div>
-      <div class="head-user-avatar-container">
-        <div class="head-user-avatar" (click)="togglePopup()">
-
-           <!-- <img [src]="'assets/' + Avatar" alt="user" class="user-avatar"> -->
-           <img [src]="'assets/user1.jpg'" alt="user" class="user-avatar">
-          <div class="circle-indicator pulse"></div>
+        <div class="head-user-avatar-container">
+          <div class="head-user-avatar" *ngIf="Avatar" [cdkMenuTriggerFor]="userOverlay">
+             <img [src]="'assets/users/' + Avatar" class="user-avatar">
+            <div class="circle-indicator pulse"></div>
         </div>
-        <div *ngIf="isPopupVisible" class="popup">
-
-
-           <p>Tên: {{ userName }}</p>
-
-
         </div>
-      </div>
 
     </div>
   </div>
 </div>
 
 
+<ng-template #userOverlay>
+  <div class="overlay overlay-user overlay-fall" cdkMenu>
+      <ul>
+        <li *ngFor="let item of userItems" cdkMenuItem>
+            <a >
+              <i class="icon" [ngClass]="item.icon"></i>
+              <span>{{ item.label}}</span>
+            </a>
+        </li>
+      </ul>
+  </div>
+</ng-template>

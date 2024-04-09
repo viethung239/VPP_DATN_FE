@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { JwtHelperService } from '@auth0/angular-jwt';
+
+import { UserService } from '../../services/user.service';
+import { userItems } from './header-data';
 
 @Component({
   selector: 'app-header',
@@ -12,27 +14,36 @@ export class HeaderComponent {
   userName: string | undefined;
   isPopupVisible = false;
   Avatar : string | undefined;
+  userItems = userItems;
   @Input() collapsed = false;
   @Input() screenWidth = 0;
   constructor( private router: Router, private authService:AuthService,
-    private jwtHelper: JwtHelperService) {
+    private userService : UserService,
+    ) {
 
   }
   togglePopup(): void {
     this.isPopupVisible = !this.isPopupVisible;
   }
   ngOnInit(): void {
+    const userInfo = this.authService.getUserInfoFromToken();
+    if (userInfo) {
+      const userId = userInfo.userId;
+      this.userService.getUserById(userId).subscribe({
+        next: (userData: any) => {
+          this.userName = userData.userName;
+          if (userData.avartar) {
+            this.Avatar = userData.avartar;
+          } else {
 
-    if (typeof localStorage !== 'undefined') {
+            this.Avatar = 'defaultavatar.jpg';
+          }
 
-      const token = localStorage.getItem('token');
-      if (token) {
-        const decodedToken = this.jwtHelper.decodeToken(token);
-        this.userName = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
-        this.Avatar = decodedToken ['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'];
-        console.log('Token khi dịch', decodedToken);
-
-      }
+        },
+        error: (error: any) => {
+          console.error('Lỗi khi lấy thông tin người dùng:', error);
+        }
+      });
     }
   }
   getHeadClass(): string {

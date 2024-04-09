@@ -17,12 +17,13 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { LoginComponent } from './login/login.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import {  MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MAT_DATE_LOCALE} from '@angular/material/core';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { MatMenuModule } from '@angular/material/menu';
 
-
-
+import { CdkMenuModule } from '@angular/cdk/menu';
 
 
 @NgModule({
@@ -48,12 +49,13 @@ import { MAT_DATE_LOCALE} from '@angular/material/core';
     BrowserAnimationsModule,
     HttpClientModule,
     MatIconModule,
-    MatPaginator,
     MatPaginatorModule,
     MatTableModule,
     MatButtonModule,
     FormsModule,
-
+    OverlayModule,
+    MatMenuModule,
+    CdkMenuModule
     ///
 
 
