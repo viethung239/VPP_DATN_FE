@@ -9,7 +9,7 @@
         </div>
         <div class="col-right">
           <div style="border-radius: 50%; text-align: center; width: 200px; height: 200px; overflow: hidden;">
-             <div style="width: 100%; height: 100%; background-image: url('assets/users/{{ Avatar }}'); background-size: cover; background-position: center;"></div>
+             <div *ngIf="Avatar" style="width: 100%; height: 100%; background-image: url('assets/users/{{ Avatar }}'); background-size: cover; background-position: center;"></div>
 
           </div>
       </div>
@@ -29,8 +29,9 @@
               <div class="progress-bar"></div>
             </div>
             <div class="view-profile">
-              <button>
+              <button [routerLink]="'/admin/cai-dat/ho-so'">
                 Xem hồ sơ
+
                 <i class="far fa-arrow-right"></i>
               </button>
             </div>

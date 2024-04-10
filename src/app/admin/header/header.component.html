@@ -20,11 +20,6 @@
             <i class="far fa-bell menu-icon"></i>
           </button>
         </div>
-        <div class="head-menu-item">
-          <button class="head-menu-item-btn ripple" (click)="logout()">
-            <i class="far fa-sign-out menu-icon"></i>
-          </button>
-        </div>
         <div class="head-user-avatar-container">
           <div class="head-user-avatar" *ngIf="Avatar" [cdkMenuTriggerFor]="userOverlay">
              <img [src]="'assets/users/' + Avatar" class="user-avatar">
@@ -39,13 +34,19 @@
 
 <ng-template #userOverlay>
   <div class="overlay overlay-user overlay-fall" cdkMenu>
-      <ul>
-        <li *ngFor="let item of userItems" cdkMenuItem>
-            <a >
-              <i class="icon" [ngClass]="item.icon"></i>
-              <span>{{ item.label}}</span>
-            </a>
-        </li>
-      </ul>
+    <ul>
+      <li *ngFor="let item of userItems" cdkMenuItem>
+        <a *ngIf="item.routeLink; else logoutAction" [routerLink]="item.routeLink">
+          <i class="icon" [ngClass]="item.icon"></i>
+          <span>{{ item.label }}</span>
+        </a>
+        <ng-template #logoutAction>
+          <a (click)="logout()">
+            <i class="icon" [ngClass]="item.icon"></i>
+            <span>{{ item.label }}</span>
+          </a>
+        </ng-template>
+      </li>
+    </ul>
   </div>
 </ng-template>

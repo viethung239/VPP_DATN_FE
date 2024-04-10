@@ -3,7 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutAdminComponent } from './admin/layout-admin/layout-admin.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './auth.guard';
+import { LayoutUserComponent } from './user/layout-user/layout-user.component';
+import { DashboardUserComponent } from './user/dashboard-user/dashboard-user.component';
+import { AuthUserGuard } from './auth-user.guard';
+import { AuthAdminGuard } from './auth-admin.guard';
 
 const routes: Routes = [
   {path:'', redirectTo:'login',pathMatch:'full'},
@@ -12,8 +15,18 @@ const routes: Routes = [
   },
   {
     path: '',
+    canActivate: [AuthUserGuard],
+    children: [
+      {
+        path: 'trang-chu',
+        component: DashboardUserComponent
+      },
+    ]
+  },
+  {
+    path: '',
     component: LayoutAdminComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthAdminGuard],
     children: [
       {
         path: 'admin/trang-chu',

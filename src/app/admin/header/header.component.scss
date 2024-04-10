@@ -183,26 +183,34 @@
   animation:  fall 300ms ease-in-out forwards;
   transform-origin: top center;
 }
-.overlay-user{
-  ul{
+.overlay-user {
+  ul {
     padding: 0.5rem 0;
     list-style: none;
     width: 10rem;
-      li{
-        padding:  0.35rem 1.5rem;
-        font-size: 14px;
-        font-weight: 400;
-        color: #495057;
-        cursor: pointer;
+    li {
+      padding: 0.35rem 1.5rem;
+      font-size: 14px;
+      font-weight: 400;
+      color: #495057;
+      cursor: pointer;
 
-        .icon{
-          margin-right: 0.6rem;
-        }
+      .icon {
+        margin-right: 0.6rem;
       }
 
-      li:hover{
+      a {
+        text-decoration: none;
+        color: inherit;
+
+      }
+
+      a:hover {
         background: #eff2f3;
+
       }
+    }
   }
 }
+
 

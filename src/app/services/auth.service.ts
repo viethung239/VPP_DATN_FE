@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Observable, tap } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { navbarData } from '../admin/sidenav/nav-data';
 
 
@@ -27,12 +27,21 @@ export class AuthService {
         })
       );
   }
-  isAuthenticated(): boolean {
+  Register(userName: string, password: string, fullName: string, email: string): Observable<any> {
+    return this.http.post<any>('https://localhost:7287/api/Auth/dang-ky', { userName, password, fullName, email })
+      .pipe(
+        tap(response => {
+
+        })
+      );
+  }
+  isAuthenticated(): Observable<boolean> {
     if (this.isLocalStorageAvailable()) {
       const token = localStorage.getItem('token');
-      return token ? !this.jwtHelper.isTokenExpired(token) : false;
+      const isAuthenticated = token ? !this.jwtHelper.isTokenExpired(token) : false;
+      return of(isAuthenticated);
     }
-    return false;
+    return of(false);
   }
 
 
@@ -132,6 +141,7 @@ export class AuthService {
       return {
         userId: decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/dsa'],
         roles: decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'],
+        isAdmin: decodedToken['http://schemas.xmlsoap.org/ws/2009/09/identity/claims/actor'] === 'True',
         decodedToken: decodedToken
       };
     }

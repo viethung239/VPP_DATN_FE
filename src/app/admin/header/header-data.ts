@@ -1,15 +1,13 @@
 export const userItems = [
   {
     icon: 'far fa-user',
-    label: 'Profile'
-  },
-  {
-    icon: 'far fa-cog',
-    label: 'Settings'
+    label: 'Hồ sơ',
+    routeLink: 'admin/cai-dat/ho-so',
   },
   {
     icon: 'far fa-power-off',
-    label: 'Logout'
+    label: 'Đăng xuất',
+
   },
 
 ];

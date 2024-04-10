@@ -55,10 +55,6 @@ export const navbarData: INavbarData[] = [
             routeLink: 'admin/cai-dat/ho-so',
             label: 'Hồ Sơ'
         },
-        {
-            routeLink: 'admin/chinh-sua/dang-xuat',
-            label: 'Tùy Chỉnh'
-        }
     ]
 },
 {

@@ -12,19 +12,43 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class LoginComponent {
   jwtHelper = new JwtHelperService();
-  username!: string;
+  userName!: string;
   password!: string;
-
+  fullName!: string;
+  email!: string;
+  missingCredentials: boolean = false;
+  missingRegistrationInfo: boolean = false;
   constructor(private http: HttpClient, private router: Router, private authService: AuthService
     , private snackBar: MatSnackBar) {
 
   }
 
+  ngOnInit(): void {
+    const signInBtn = document.querySelector("#sign-in-btn");
+    const signUpBtn = document.querySelector("#sign-up-btn");
+    const container = document.querySelector(".container");
+
+    signInBtn!.addEventListener("click", () => {
+    container!.classList.remove("sign-up-mode");
+    });
+
+    signUpBtn!.addEventListener("click", () => {
+      container!.classList.add("sign-up-mode");
+    });
+  }
+  switchToSignInMode(): void {
+    const container = document.querySelector(".container");
+    container!.classList.remove("sign-up-mode");
+  }
   Login(): void {
-    this.authService.Login(this.username, this.password)
+    if (!this.userName || !this.password) {
+      this.missingCredentials = true;
+      return;
+    }
+    this.authService.Login(this.userName, this.password)
       .pipe(
         catchError(error => {
-          console.error('Đăng nhập không thành công', error, { username: this.username, password: this.password });
+          console.error('Đăng nhập không thành công', error, { username: this.userName, password: this.password });
           this.snackBar.open('Tên tài khoản hoặc mật khẩu không chính xác', 'Đóng', {
             duration: 3000,
           });
@@ -44,5 +68,26 @@ export class LoginComponent {
         this.router.navigate(['admin/trang-chu']);
       });
   }
-
+  Register(): void {
+    if (!this.userName || !this.password || !this.fullName || !this.email) {
+      this.missingRegistrationInfo = true;
+      return;
+    }
+    this.authService.Register(this.userName, this.password, this.fullName, this.email)
+      .subscribe({
+        next: response => {
+          console.log('Đăng kí thành công', response);
+          this.snackBar.open('Đăng kí thành công', 'Đóng', {
+            duration: 3000,
+          });
+          this.switchToSignInMode();
+        },
+        error: error => {
+          console.error('Đăng kí không thành công', error);
+          this.snackBar.open('Đăng kí không thành công', 'Đóng', {
+            duration: 3000,
+          });
+        }
+      });
+}
 }

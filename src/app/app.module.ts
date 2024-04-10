@@ -24,6 +24,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { MatMenuModule } from '@angular/material/menu';
 
 import { CdkMenuModule } from '@angular/cdk/menu';
+import { LayoutUserComponent } from './user/layout-user/layout-user.component';
+import { DashboardUserComponent } from './user/dashboard-user/dashboard-user.component';
 
 
 @NgModule({
@@ -36,6 +38,8 @@ import { CdkMenuModule } from '@angular/cdk/menu';
     DashboardComponent,
     SublevelMenuComponent,
     LoginComponent,
+    LayoutUserComponent,
+    DashboardUserComponent,
 
     //
 
