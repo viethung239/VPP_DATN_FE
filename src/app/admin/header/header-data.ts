@@ -5,7 +5,7 @@ export const userItems = [
     routeLink: 'admin/cai-dat/ho-so',
   },
   {
-    icon: 'far fa-power-off',
+    icon: 'fas fa-power-off',
     label: 'Đăng xuất',
 
   },

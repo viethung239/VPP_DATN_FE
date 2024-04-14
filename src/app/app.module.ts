@@ -26,8 +26,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { LayoutUserComponent } from './user/layout-user/layout-user.component';
 import { DashboardUserComponent } from './user/dashboard-user/dashboard-user.component';
-
-
+import { MatCardModule } from '@angular/material/card';
+import { HeaderUserComponent } from './user/header-user/header-user.component';
+import { FooterUserComponent } from './user/footer-user/footer-user.component';
+import { BodyUserComponent } from './user/body-user/body-user.component';
+import { BlogComponent } from './user/blog/blog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +43,10 @@ import { DashboardUserComponent } from './user/dashboard-user/dashboard-user.com
     LoginComponent,
     LayoutUserComponent,
     DashboardUserComponent,
+    HeaderUserComponent,
+    FooterUserComponent,
+    BodyUserComponent,
+    BlogComponent,
 
     //
 
@@ -59,7 +66,8 @@ import { DashboardUserComponent } from './user/dashboard-user/dashboard-user.com
     FormsModule,
     OverlayModule,
     MatMenuModule,
-    CdkMenuModule
+    CdkMenuModule,
+    MatCardModule
     ///
 
 

@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard-user',
   templateUrl: './dashboard-user.component.html',
-  styleUrl: './dashboard-user.component.scss'
+  styleUrls: ['./dashboard-user.component.scss']
 })
-export class DashboardUserComponent {
+export class DashboardUserComponent  {
 
 }

@@ -17,6 +17,7 @@ export class LoginComponent {
   fullName!: string;
   email!: string;
   missingCredentials: boolean = false;
+
   missingRegistrationInfo: boolean = false;
   constructor(private http: HttpClient, private router: Router, private authService: AuthService
     , private snackBar: MatSnackBar) {
@@ -24,17 +25,19 @@ export class LoginComponent {
   }
 
   ngOnInit(): void {
-    const signInBtn = document.querySelector("#sign-in-btn");
-    const signUpBtn = document.querySelector("#sign-up-btn");
-    const container = document.querySelector(".container");
+    if (typeof document !== 'undefined') {
+      const signInBtn = document.querySelector("#sign-in-btn");
+      const signUpBtn = document.querySelector("#sign-up-btn");
+      const container = document.querySelector(".container");
 
-    signInBtn!.addEventListener("click", () => {
-    container!.classList.remove("sign-up-mode");
-    });
+      signInBtn!.addEventListener("click", () => {
+        container!.classList.remove("sign-up-mode");
+      });
 
-    signUpBtn!.addEventListener("click", () => {
-      container!.classList.add("sign-up-mode");
-    });
+      signUpBtn!.addEventListener("click", () => {
+        container!.classList.add("sign-up-mode");
+      });
+    }
   }
   switchToSignInMode(): void {
     const container = document.querySelector(".container");
@@ -77,10 +80,11 @@ export class LoginComponent {
       .subscribe({
         next: response => {
           console.log('Đăng kí thành công', response);
+          this.switchToSignInMode();
           this.snackBar.open('Đăng kí thành công', 'Đóng', {
             duration: 3000,
           });
-          this.switchToSignInMode();
+
         },
         error: error => {
           console.error('Đăng kí không thành công', error);

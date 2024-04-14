@@ -7,6 +7,7 @@ import { LayoutUserComponent } from './user/layout-user/layout-user.component';
 import { DashboardUserComponent } from './user/dashboard-user/dashboard-user.component';
 import { AuthUserGuard } from './auth-user.guard';
 import { AuthAdminGuard } from './auth-admin.guard';
+import { BlogComponent } from './user/blog/blog.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'login',pathMatch:'full'},
@@ -15,11 +16,17 @@ const routes: Routes = [
   },
   {
     path: '',
+    component: LayoutUserComponent,
     canActivate: [AuthUserGuard],
     children: [
       {
         path: 'trang-chu',
         component: DashboardUserComponent
+      },
+      {
+
+        path: 'trang-chu/blog',
+        component: BlogComponent
       },
     ]
   },
