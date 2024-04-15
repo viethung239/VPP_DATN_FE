@@ -8,6 +8,8 @@ import { DashboardUserComponent } from './user/dashboard-user/dashboard-user.com
 import { AuthUserGuard } from './auth-user.guard';
 import { AuthAdminGuard } from './auth-admin.guard';
 import { BlogComponent } from './user/blog/blog.component';
+import { ShopUserComponent } from './user/shop-user/shop-user.component';
+import { ProductDetailShopComponent } from './user/product-detail-shop/product-detail-shop.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'login',pathMatch:'full'},
@@ -27,6 +29,15 @@ const routes: Routes = [
 
         path: 'trang-chu/blog',
         component: BlogComponent
+      },
+      {
+
+        path: 'trang-chu/san-pham',
+        component: ShopUserComponent
+      },  {
+
+        path: 'trang-chu/san-pham/chi-tiet',
+        component: ProductDetailShopComponent
       },
     ]
   },

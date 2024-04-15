@@ -31,6 +31,8 @@ import { HeaderUserComponent } from './user/header-user/header-user.component';
 import { FooterUserComponent } from './user/footer-user/footer-user.component';
 import { BodyUserComponent } from './user/body-user/body-user.component';
 import { BlogComponent } from './user/blog/blog.component';
+import { ShopUserComponent } from './user/shop-user/shop-user.component';
+import { ProductDetailShopComponent } from './user/product-detail-shop/product-detail-shop.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +49,8 @@ import { BlogComponent } from './user/blog/blog.component';
     FooterUserComponent,
     BodyUserComponent,
     BlogComponent,
+    ShopUserComponent,
+    ProductDetailShopComponent,
 
     //
 
