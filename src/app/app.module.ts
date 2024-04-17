@@ -33,6 +33,8 @@ import { BodyUserComponent } from './user/body-user/body-user.component';
 import { BlogComponent } from './user/blog/blog.component';
 import { ShopUserComponent } from './user/shop-user/shop-user.component';
 import { ProductDetailShopComponent } from './user/product-detail-shop/product-detail-shop.component';
+import { AboutUserComponent } from './user/about-user/about-user.component';
+import { CartUserComponent } from './user/cart-user/cart-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +53,8 @@ import { ProductDetailShopComponent } from './user/product-detail-shop/product-d
     BlogComponent,
     ShopUserComponent,
     ProductDetailShopComponent,
+    AboutUserComponent,
+    CartUserComponent,
 
     //
 
