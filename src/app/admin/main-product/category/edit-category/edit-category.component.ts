@@ -40,7 +40,7 @@ export class EditCategoryComponent {
       categoryId: this.categoryId,
       categoryGroupId: ['', Validators.required],
       categoryName: ['', Validators.required],
-      categoryImg: ['', Validators.required],
+
       isActive: ['true', Validators.required],
       dateUpdated: [this.getCurrentDateTime(), Validators.required],
     });
@@ -64,7 +64,7 @@ export class EditCategoryComponent {
 
                categoryGroupId: categoryData.categoryGroupId,
                categoryName: categoryData.categoryName,
-               categoryImg: categoryData.categoryImg,
+
                isActive: categoryData.isActive,
               //
 
@@ -80,15 +80,6 @@ export class EditCategoryComponent {
     } else {
       console.error('Không thể tải dữ liệu sản phẩm  với idSanPham là null.');
     }
-  }
-  onFileSelected(event: any) {
-    const selectedFile = event.target.files[0];
-    const fileName = selectedFile.name;
-    console.log('Tên tệp đã chọn:', fileName);
-
-    this.CategoryForm.patchValue({
-      categoryImg: fileName
-    });
   }
 
   onSubmit() {

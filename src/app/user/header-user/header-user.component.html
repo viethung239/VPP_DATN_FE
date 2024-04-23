@@ -1,14 +1,16 @@
 <section id="header">
-  <a href="#"><img src="/assets/img/logo.png" alt=""></a>
+
+  <a [routerLink]="'trang-chu'"  class="logo"><img src="/assets/logoVPP.png" >
+  </a>
 
   <div>
+
       <ul id="navbar">
-        <li><a [routerLink]="'trang-chu'" routerLinkActive="active">Home</a></li>
-        <li><a [routerLink]="'trang-chu/san-pham'" routerLinkActive="active">Shop</a></li>
-        <li><a href="">Blog</a></li>
-        <li><a href="">About</a></li>
-        <li><a href="">Contact</a></li>
-        <li><a href=""><i class="fal fa-shopping-bag"></i></a></li>
+        <li><a [routerLink]="'trang-chu'" routerLinkActive="active">Trang chủ</a></li>
+        <li><a [routerLink]="'trang-chu/san-pham'" routerLinkActive="active" >Sản phẩm</a></li>
+        <li><a [routerLink]="'trang-chu/tin-tuc'" routerLinkActive="active">Tin tức</a></li>
+        <li><a [routerLink]="'trang-chu/ve-chung-toi'" routerLinkActive="active">Về chúng tôi</a></li>
+        <li><a  [routerLink]="'trang-chu/gio-hang'" routerLinkActive="active"><i class="fal fa-shopping-bag"></i></a></li>
       </ul>
   </div>
 </section>

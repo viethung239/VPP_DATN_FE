@@ -29,6 +29,7 @@ export class AddProductComponent {
       lDescription: ['', Validators.required],
       productImage: ['', Validators.required],
       isActive: ['true', Validators.required],
+      isHot:['',Validators.required],
       dateCreated: [this.getCurrentDateTime(), Validators.required],
       dateUpdated: [this.getCurrentDateTime(), Validators.required],
 

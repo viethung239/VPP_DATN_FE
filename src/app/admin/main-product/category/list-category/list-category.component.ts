@@ -13,7 +13,7 @@ import { CategoryGroupData } from '../../group-category/list-group-category/list
 })
 export class ListCategoryComponent {
   CategoryGroup: CategoryGroupData[] = [];
-  displayedColumns: string[] = ['stt', 'categoryGroupId', 'categoryName','categoryImg', 'isActive','dateCreated','dateUpdated','actions'];
+  displayedColumns: string[] = ['stt', 'categoryGroupId', 'categoryName', 'isActive','dateCreated','dateUpdated','actions'];
   searchKeyword: string = '';
   dataSource = new MatTableDataSource<CategoryData>([]);
 
@@ -85,7 +85,6 @@ export interface CategoryData {
   categoryId: string,
   categoryGroupId:  string,
   categoryName:  string,
-  categoryImg:  string,
   isActive: string,
   dateCreated:  string,
   dateUpdated: string

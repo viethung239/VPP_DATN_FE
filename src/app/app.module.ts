@@ -35,6 +35,8 @@ import { ShopUserComponent } from './user/shop-user/shop-user.component';
 import { ProductDetailShopComponent } from './user/product-detail-shop/product-detail-shop.component';
 import { AboutUserComponent } from './user/about-user/about-user.component';
 import { CartUserComponent } from './user/cart-user/cart-user.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {NgxPaginationModule} from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +58,7 @@ import { CartUserComponent } from './user/cart-user/cart-user.component';
     AboutUserComponent,
     CartUserComponent,
 
+
     //
 
 
@@ -75,7 +78,9 @@ import { CartUserComponent } from './user/cart-user/cart-user.component';
     OverlayModule,
     MatMenuModule,
     CdkMenuModule,
-    MatCardModule
+    MatCardModule,
+    MatTabsModule,
+    NgxPaginationModule
     ///
 
 

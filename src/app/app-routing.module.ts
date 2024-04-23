@@ -29,7 +29,7 @@ const routes: Routes = [
       },
       {
 
-        path: 'trang-chu/blog',
+        path: 'trang-chu/tin-tuc',
         component: BlogComponent
       },
       {

@@ -45,6 +45,7 @@ export class EditProductComponent {
       lDescription: ['', Validators.required],
       productImage: ['', Validators.required],
       isActive: ['true', Validators.required],
+      isHot:['',Validators.required],
       dateUpdated: [this.getCurrentDateTime(), Validators.required],
     });
 
@@ -72,6 +73,7 @@ export class EditProductComponent {
               lDescription: productData.lDescription,
               productImage: productData.productImage,
               isActive: productData.isActive,
+              isHot: productData.isHot
               //
 
             });

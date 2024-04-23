@@ -89,6 +89,7 @@ export interface ProductData {
   lDescription: string,
   productImage: string,
   isActive: string,
+  isHot: boolean,
   dateCreated: string,
   dateUpdated: string
 }

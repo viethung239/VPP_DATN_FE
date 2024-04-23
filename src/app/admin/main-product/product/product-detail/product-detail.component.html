@@ -3,7 +3,7 @@
   <div class="product-info">
     <div class="product-image">
       <mat-card>
-        <img style="max-height: 400px;" mat-card-image src="assets/{{ product.productImage }}" alt="{{ product.productName }} Image">
+        <img style="max-height: 400px;" mat-card-image src="assets/products/{{ product.productImage }}" alt="{{ product.productName }} Image">
       </mat-card>
     </div>
     <div class="details">
@@ -30,6 +30,13 @@
             <mat-select [disabled]="true" [value]="product.isActive">
               <mat-option [value]="true">Sử dụng</mat-option>
               <mat-option [value]="false">Không sử dụng</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Nổi bật</mat-label>
+            <mat-select [disabled]="true" [value]="product.isHot">
+              <mat-option [value]="true">Có</mat-option>
+              <mat-option [value]="false">Không</mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field class="example-full-width">

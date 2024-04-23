@@ -23,7 +23,7 @@ export class AddCategoryComponent {
 
       categoryGroupId: ['', Validators.required],
       categoryName: ['', Validators.required],
-      categoryImg: ['', Validators.required],
+
       isActive: ['true', Validators.required],
       dateCreated: [this.getCurrentDateTime(), Validators.required],
       dateUpdated: [this.getCurrentDateTime(), Validators.required],
@@ -44,15 +44,7 @@ export class AddCategoryComponent {
 
     return now.toISOString();
   }
-  onFileSelected(event: any) {
-    const selectedFile = event.target.files[0];
-    const fileName = selectedFile.name;
-    console.log('Tên tệp đã chọn:', fileName);
 
-    this.CategoryForm.patchValue({
-      categoryImg: fileName
-    });
-  }
 
   onSubmit() {
     console.log('danh mục trước khi đươc gửi đi',this.CategoryForm);
