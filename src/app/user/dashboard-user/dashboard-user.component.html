@@ -35,8 +35,8 @@
   <p>Các loại sản phẩm</p>
   <mat-tab-group class="prod">
     <mat-tab label="Sản phẩm mới">
-      <div class="pro-container">
-        <div class="pro" *ngFor="let product of ProductisNew">
+      <div class="pro-container" >
+        <div class="pro" *ngFor="let product of ProductisNew" [routerLink]="['san-pham/chi-tiet-san-pham', product.productId]">
           <img [src]="'assets/products/' + product.productImage">
           <div class="des">
             <span>{{ getTenDanhMuc(product.categoryId) }}</span>
@@ -50,13 +50,14 @@
             </div>
             <h4>{{product.productPrice | currency:'VND'}}</h4>
           </div>
-          <a ><i class="fal fa-shopping-cart cart"></i></a>
+
+          <a> <i class="fal fa-shopping-cart cart"></i></a>
         </div>
       </div>
     </mat-tab>
     <mat-tab label="Sản phẩm nổi bật">
       <div class="pro-container">
-        <div class="pro" *ngFor="let product of ProductisHot | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+        <div class="pro" *ngFor="let product of ProductisHot | paginate: { itemsPerPage: itemsPerPage, currentPage: p }" [routerLink]="['san-pham/chi-tiet-san-pham', product.productId]">
           <img [src]="'assets/products/' + product.productImage" alt="">
           <div class="des">
             <span>{{ getTenDanhMuc(product.categoryId) }}</span>

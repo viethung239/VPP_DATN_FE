@@ -21,7 +21,7 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutUserComponent,
-    canActivate: [AuthUserGuard],
+
     children: [
       {
         path: 'trang-chu',
@@ -39,7 +39,7 @@ const routes: Routes = [
       },
       {
 
-        path: 'trang-chu/san-pham/chi-tiet',
+        path: 'trang-chu/san-pham/chi-tiet-san-pham/:id',
         component: ProductDetailShopComponent
       },
       {
@@ -48,7 +48,7 @@ const routes: Routes = [
         component: AboutUserComponent
       },
       {
-
+        canActivate: [AuthUserGuard],
         path: 'trang-chu/gio-hang',
         component: CartUserComponent
       },
@@ -97,7 +97,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    scrollPositionRestoration: 'top'
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

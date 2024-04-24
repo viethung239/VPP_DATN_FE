@@ -26,7 +26,7 @@ p {
   margin: 15px 0 20px 0;
 }
 #page-header{
-  background-image: url("/assets/img/banner/b19.jpg");
+  background-image: url("/assets/banner/b7.jpg");
   height: 40vh;
   width: 100%;
   background-size:cover ;
@@ -43,19 +43,7 @@ p {
 #pagination{
   text-align: center;
 }
-#pagination a{
-  text-decoration: none;
-  background-color: #088178;
-  padding: 15px 20px;
-  border-radius: 4px;
-  color: #fff;
-  font-weight: 600;
-  margin-right: 4px;
-}
-#pagination a i{
-  font-size: 16px;
-  font-weight: 600;
-}
+
 #blog{
   padding: 150px 150px 0 150px;
 }
@@ -109,4 +97,71 @@ p {
   font-weight: 700;
   color: #c9cbce;
   z-index: -9;
+}
+::ng-deep{
+  .ngx-pagination{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  }
+
+  .ngx-pagination li{
+  width: 35px;
+  height: 35px;
+  border-radius: 50% !important;
+  background: #f8f8f8;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  &.small-screen{
+    display: none !important;
+  }
+  &.pagination-previous,
+  &.pagination-next{
+    a,span{
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      color: #f8f8f8;
+    }
+  }
+  }
+
+  .ngx-pagination .pagination-previous a:before,
+  .ngx-pagination .pagination-previous.disabled:before,
+  .ngx-pagination .pagination-next::before{
+      margin-right: 0px !important;
+      font-size: 26px;
+      margin-top: -8px;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      color: #2199e8;
+      left: 0;
+      pointer-events: none;
+
+  }
+  .ngx-pagination .pagination-next::before{
+    content: '\bb';
+  }
+  .ngx-pagination .pagination-next::after{
+    display: none;
+  }
+  .ngx-pagination .pagination-previous.disabled:before{
+    opacity: 0.4;
+  }
+  .ngx-pagination .pagination-previous.disabled:hover{
+    background: #f8f8f8 !important;
+  }
+  .ngx-pagination a:hover,
+  .ngx-pagination button:hover{
+      background: initial !important;
+  }
 }

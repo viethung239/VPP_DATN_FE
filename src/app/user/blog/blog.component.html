@@ -5,70 +5,20 @@
 </section>
 
 <section id="blog">
-    <div class="blog-box">
+    <div class="blog-box" *ngFor="let post of Post | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
         <div class="blog-img">
-            <img src="/assets/img/blog/b1.jpg" alt="">
+            <img [src]="'assets/blog/' + post.postImg">
         </div>
         <div class="blog-details">
-            <h4>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam, laborum.</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-               Alias quae tempore cum ex adipisci, perspiciatis est sequi repellendus illo ut!</p>
-            <a href="#">Đọc tiếp</a>
+            <h4>{{ post.postName }}</h4>
+            <p>{{post.sContent}}</p>
+            <a >Đọc tiếp</a>
         </div>
-        <h1>13/01</h1>
+        <h1>{{post.dateCreated| date:'dd-MM-yyyy'}}</h1>
     </div>
-    <div class="blog-box">
-      <div class="blog-img">
-          <img src="/assets/img/blog/b2.jpg" alt="">
-      </div>
-      <div class="blog-details">
-          <h4>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam, laborum.</h4>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-             Alias quae tempore cum ex adipisci, perspiciatis est sequi repellendus illo ut!</p>
-          <a href="#">Đọc tiếp</a>
-      </div>
-      <h1>13/01</h1>
-  </div>
-  <div class="blog-box">
-    <div class="blog-img">
-        <img src="/assets/img/blog/b3.jpg" alt="">
-    </div>
-    <div class="blog-details">
-        <h4>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam, laborum.</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-           Alias quae tempore cum ex adipisci, perspiciatis est sequi repellendus illo ut!</p>
-        <a href="#">Đọc tiếp</a>
-    </div>
-    <h1>13/01</h1>
-</div>
-<div class="blog-box">
-  <div class="blog-img">
-      <img src="/assets/img/blog/b4.jpg" alt="">
-  </div>
-  <div class="blog-details">
-      <h4>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam, laborum.</h4>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-         Alias quae tempore cum ex adipisci, perspiciatis est sequi repellendus illo ut!</p>
-      <a href="#">Đọc tiếp</a>
-  </div>
-  <h1>13/01</h1>
-</div>
-<div class="blog-box">
-  <div class="blog-img">
-      <img src="/assets/img/blog/b5.jpg" alt="">
-  </div>
-  <div class="blog-details">
-      <h4>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam, laborum.</h4>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-         Alias quae tempore cum ex adipisci, perspiciatis est sequi repellendus illo ut!</p>
-      <a href="#">Đọc tiếp</a>
-  </div>
-  <h1>13/01</h1>
-</div>
+
 </section>
 
-<section  id="pagination" class="section-p1">
-  <a href="#">1</a>
-  <a href="#">2</a>
-  <a href="#"><i class="fal fa-long-arrow-alt-right"></i></a>
+<section  id="pagination" >
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </section>

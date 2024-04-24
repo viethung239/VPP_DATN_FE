@@ -9,8 +9,6 @@ import { CategoryService } from '../../services/category.service';
 })
 export class ShopUserComponent {
   Category: any[] =[];
-
-
   Product: any[] = [];
   p: number = 1;
   itemsPerPage: number = 12;

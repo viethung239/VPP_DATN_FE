@@ -1,28 +1,37 @@
-<section id="prodetail" class="section-p1">
+<section id="prodetail" class="section-p1" *ngIf="product">
   <div class="single-pro-image">
-    <img src="/assets/img/products/f1.jpg" width="100%" id="MainImg">
+    <img [src]="'assets/products/' + product.productImage" width="70%" id="MainImg">
   </div>
   <div class="single-pro-details">
-    <h6>Home / T-Shirt</h6>
-    <h4>Men's Fashion T Shirt</h4>
-    <h2>$139.00</h2>
+    <h6>DANH MỤC: {{ getTenDanhMuc(product.categoryId) }}</h6>
+    <h4>{{product.productName}}</h4>
+    <h2>{{product.productPrice | currency:'VND'}}</h2>
     <input type="number" value="1">
-    <button class="normal"> Them vao gio hang</button>
-    <h4>Mo ta san pham</h4>
-    <span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias,
-      numquam quis repudiandae rem architecto, aliquam corporis quod temporibus
-      sint sunt praesentium tenetur nostrum iste mollitia repellat vero magni animi culpa?</span>
+    <button class="normal">Thêm vào giỏ</button>
+    <mat-tab-group style="margin-top: 20px;">
+      <mat-tab label="Mô tả chính">
+        <div style="margin-top: 10px;">
+          <span>{{product.lDescription}}</span>
+        </div>
+      </mat-tab>
+      <mat-tab label="Mô tả ngắn">
+        <div style="margin-top: 10px;">
+        <span>{{product.sDescription}}</span>
+      </div>
+      </mat-tab>
+
+    </mat-tab-group>
   </div>
 </section>
 <section id="product1" class="section-p1">
-  <h2>Featured Products</h2>
-  <p>Summer Collection New Morden Desgin</p>
+  <h2>Sản phẩm HOT</h2>
+  <p>Có thể bạn sẽ thích</p>
   <div class="pro-container">
-    <div class="pro">
-      <img src="/assets/img/products/f1.jpg" alt="">
+    <div class="pro" *ngFor="let product of ProductisHot | paginate: { itemsPerPage: itemsPerPage, currentPage: p }" [routerLink]="['san-pham/chi-tiet-san-pham', product.productId]">
+      <img [src]="'assets/products/' + product.productImage" alt="">
       <div class="des">
-        <span>adidas</span>
-        <h5>Cartoon Astronaut T-shirts</h5>
+        <span>{{ getTenDanhMuc(product.categoryId) }}</span>
+        <h5>{{ product.productName }}</h5>
         <div class="star">
           <i class="fal fa-star"></i>
           <i class="fal fa-star"></i>
@@ -30,58 +39,13 @@
           <i class="fal fa-star"></i>
           <i class="fal fa-star"></i>
         </div>
-        <h4>$78</h4>
+        <h4>{{product.productPrice | currency:'VND'}}</h4>
       </div>
-      <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+      <a><i class="fal fa-shopping-cart cart"></i></a>
     </div>
-    <div class="pro">
-      <img src="/assets/img/products/f2.jpg" alt="">
-      <div class="des">
-        <span>adidas</span>
-        <h5>Cartoon Astronaut T-shirts</h5>
-        <div class="star">
-          <i class="fal fa-star"></i>
-          <i class="fal fa-star"></i>
-          <i class="fal fa-star"></i>
-          <i class="fal fa-star"></i>
-          <i class="fal fa-star"></i>
-        </div>
-        <h4>$78</h4>
-      </div>
-      <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
-    </div>
-    <div class="pro">
-      <img src="/assets/img/products/f3.jpg" alt="">
-      <div class="des">
-        <span>adidas</span>
-        <h5>Cartoon Astronaut T-shirts</h5>
-        <div class="star">
-          <i class="fal fa-star"></i>
-          <i class="fal fa-star"></i>
-          <i class="fal fa-star"></i>
-          <i class="fal fa-star"></i>
-          <i class="fal fa-star"></i>
-        </div>
-        <h4>$78</h4>
-      </div>
-      <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
-    </div>
-    <div class="pro">
-      <img src="/assets/img/products/f4.jpg" alt="">
-      <div class="des">
-        <span>adidas</span>
-        <h5>Cartoon Astronaut T-shirts</h5>
-        <div class="star">
-          <i class="fal fa-star"></i>
-          <i class="fal fa-star"></i>
-          <i class="fal fa-star"></i>
-          <i class="fal fa-star"></i>
-          <i class="fal fa-star"></i>
-        </div>
-        <h4>$78</h4>
-      </div>
-      <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
-    </div>
-
   </div>
+
+  <div class="section-m1">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
 </section>

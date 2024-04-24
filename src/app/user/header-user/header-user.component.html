@@ -11,6 +11,13 @@
         <li><a [routerLink]="'trang-chu/tin-tuc'" routerLinkActive="active">Tin tức</a></li>
         <li><a [routerLink]="'trang-chu/ve-chung-toi'" routerLinkActive="active">Về chúng tôi</a></li>
         <li><a  [routerLink]="'trang-chu/gio-hang'" routerLinkActive="active"><i class="fal fa-shopping-bag"></i></a></li>
+
+        <ng-container *ngIf="isLoggedIn">
+          <li><a (click)="logout()" [routerLink]="'login'">Đăng xuất</a></li>
+        </ng-container>
+        <ng-container *ngIf="!isLoggedIn">
+          <li><a [routerLink]="'login'">Đăng nhập | Đăng kí</a></li>
+        </ng-container>
       </ul>
   </div>
 </section>

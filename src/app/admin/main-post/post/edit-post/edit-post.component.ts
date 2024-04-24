@@ -44,6 +44,7 @@ export class EditPostComponent {
       sContent: ['', Validators.required],
       lContent: ['', Validators.required],
       isActive: ['', Validators.required],
+      isHot: ['', Validators.required],
       dateUpdated: [this.getCurrentDateTime(), Validators.required],
 
     });
@@ -71,6 +72,7 @@ export class EditPostComponent {
               sContent: postData.sContent,
               lContent: postData.lContent,
               isActive: postData.isActive,
+              isHot: postData.isHot,
               //
 
             });

@@ -26,12 +26,19 @@
       <mat-option [value]="false">Không sử dụng</mat-option>
     </mat-select>
   </mat-form-field>
+  <mat-form-field>
+    <mat-label>Nổi bật</mat-label>
+    <mat-select formControlName="isHot" placeholder="Chọn">
+      <mat-option [value]="true">Có</mat-option>
+      <mat-option [value]="false">Không</mat-option>
+    </mat-select>
+  </mat-form-field>
  <mat-form-field class="add-form">
     <mat-label>Chọn tệp</mat-label>
     <input matInput placeholder="Chọn tệp" readonly [value]="PostForm.get('postImg')?.value">
     <mat-icon matSuffix (click)="fileInput.click()">attach_file</mat-icon>
     <input type="file" #fileInput style="display:none;" (change)="onFileSelected($event)">
-    <img *ngIf="PostForm.get('postImg')?.value" [src]="'assets/products/' + PostForm.get('postImg')?.value" width="100" height="100">
+    <img *ngIf="PostForm.get('postImg')?.value" [src]="'assets/blog/' + PostForm.get('postImg')?.value" width="100" height="100">
   </mat-form-field>
   <mat-form-field>
 
