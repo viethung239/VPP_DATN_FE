@@ -22,7 +22,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MAT_DATE_LOCALE} from '@angular/material/core';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MatMenuModule } from '@angular/material/menu';
-
+import {MatBadgeModule} from '@angular/material/badge';
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { LayoutUserComponent } from './user/layout-user/layout-user.component';
 import { DashboardUserComponent } from './user/dashboard-user/dashboard-user.component';
@@ -37,6 +37,7 @@ import { AboutUserComponent } from './user/about-user/about-user.component';
 import { CartUserComponent } from './user/cart-user/cart-user.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { BlogDetailComponent } from './user/blog-detail/blog-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +58,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     ProductDetailShopComponent,
     AboutUserComponent,
     CartUserComponent,
+    BlogDetailComponent,
 
 
     //
@@ -80,7 +82,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     CdkMenuModule,
     MatCardModule,
     MatTabsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatBadgeModule
     ///
 
 

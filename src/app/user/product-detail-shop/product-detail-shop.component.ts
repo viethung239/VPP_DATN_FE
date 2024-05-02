@@ -1,8 +1,11 @@
+import { WareHouseDetailsService } from './../../services/ware-house-details.service';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { CategoryService } from '../../services/category.service';
 import { ProductData } from '../../admin/main-product/product/list-product/list-product.component';
+import { CartService } from '../../services/cart.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-product-detail-shop',
@@ -14,11 +17,16 @@ export class ProductDetailShopComponent {
   productId: string | null;
   product: any;
   ProductisHot: any[] = [];
+  productWarehouses: any[] = [];
   p: number = 1;
   itemsPerPage: number = 4;
+
   constructor(private route: ActivatedRoute,
     private productService: ProductService,
-    private categoryService : CategoryService ) {
+    private categoryService : CategoryService,
+    private wareHouseDetailsService :  WareHouseDetailsService,
+    private cartService: CartService ,
+    private snackBar: MatSnackBar) {
     this.productId = null;
 
   }
@@ -45,6 +53,7 @@ export class ProductDetailShopComponent {
   getProductDetail(id: string): void {
     this.productService.getProductById(id).subscribe((data: any) => {
       this.product = data;
+      this.getWareHouseDetails();
     });
   }
   getDataProduct(): void {
@@ -56,5 +65,30 @@ export class ProductDetailShopComponent {
         console.error(error);
       }
     });
+  }
+  getWareHouseDetails(): void {
+    this.wareHouseDetailsService.getListWareHouseDetail()
+      .subscribe((warehouses: any) => {
+        this.productWarehouses = warehouses.filter((warehouse: any) => warehouse.productId === this.product.productId);
+      });
+  }
+
+  getQuantityByWarehouse(): number {
+    let totalQuantity = 0;
+    this.productWarehouses.forEach((warehouse: any) => {
+      totalQuantity += warehouse.quantity;
+    });
+    return totalQuantity;
+  }
+  addToCart(quantity:number) {
+    const cartItem = {
+      product: this.product,
+      quantity: quantity
+    };
+    this.cartService.addToCart(cartItem);
+    this.snackBar.open('Thêm vào giỏ hàng thành công', 'Đóng', {
+      duration: 3000,
+    });
+
   }
 }

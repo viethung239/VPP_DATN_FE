@@ -6,7 +6,7 @@
 
 <section id="product1" class="section-p1">
   <div class="pro-container">
-    <div class="pro" *ngFor="let product of Product | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+    <div class="pro" *ngFor="let product of Product | paginate: { itemsPerPage: itemsPerPage, currentPage: p }" [routerLink]="['chi-tiet-san-pham', product.productId]">
       <img [src]="'assets/products/' + product.productImage">
       <div class="des">
         <span>{{ getTenDanhMuc(product.categoryId) }}</span>

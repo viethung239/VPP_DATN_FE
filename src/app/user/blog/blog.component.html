@@ -5,14 +5,14 @@
 </section>
 
 <section id="blog">
-    <div class="blog-box" *ngFor="let post of Post | paginate: { itemsPerPage: itemsPerPage, currentPage: p }">
+    <div class="blog-box" *ngFor="let post of Post | paginate: { itemsPerPage: itemsPerPage, currentPage: p }" >
         <div class="blog-img">
             <img [src]="'assets/blog/' + post.postImg">
         </div>
         <div class="blog-details">
             <h4>{{ post.postName }}</h4>
             <p>{{post.sContent}}</p>
-            <a >Đọc tiếp</a>
+            <a [routerLink]="['chi-tiet-tin', post.postId]">Đọc tiếp</a>
         </div>
         <h1>{{post.dateCreated| date:'dd-MM-yyyy'}}</h1>
     </div>

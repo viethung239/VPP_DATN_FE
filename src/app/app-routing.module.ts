@@ -12,6 +12,7 @@ import { ShopUserComponent } from './user/shop-user/shop-user.component';
 import { ProductDetailShopComponent } from './user/product-detail-shop/product-detail-shop.component';
 import { AboutUserComponent } from './user/about-user/about-user.component';
 import { CartUserComponent } from './user/cart-user/cart-user.component';
+import { BlogDetailComponent } from './user/blog-detail/blog-detail.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'login',pathMatch:'full'},
@@ -31,6 +32,11 @@ const routes: Routes = [
 
         path: 'trang-chu/tin-tuc',
         component: BlogComponent
+      },
+      {
+
+        path: 'trang-chu/tin-tuc/chi-tiet-tin/:id',
+        component: BlogDetailComponent
       },
       {
 

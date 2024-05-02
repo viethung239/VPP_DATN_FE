@@ -3,11 +3,19 @@
     <img [src]="'assets/products/' + product.productImage" width="70%" id="MainImg">
   </div>
   <div class="single-pro-details">
-    <h6>DANH MỤC: {{ getTenDanhMuc(product.categoryId) }}</h6>
-    <h4>{{product.productName}}</h4>
-    <h2>{{product.productPrice | currency:'VND'}}</h2>
-    <input type="number" value="1">
-    <button class="normal">Thêm vào giỏ</button>
+    <span style="color: #088178;">Danh mục: {{ getTenDanhMuc(product.categoryId) }}</span>
+    <br>
+    <p>{{product.productName}}</p>
+    <h3><span>{{product.productPrice | currency:'VND'}}</span></h3>
+
+    <div *ngIf="getQuantityByWarehouse() > 0" class="section-m1">
+    <input type="number" #quantityInput value="1">
+    <button (click)="addToCart(+quantityInput.value)" class="normal">Thêm vào giỏ</button>
+    </div>
+    <p *ngIf="getQuantityByWarehouse() > 0; else soldOutMessage">Số lượng trong kho {{ getQuantityByWarehouse() }} sản phẩm</p>
+    <ng-template #soldOutMessage>
+      <p>Sản phẩm đã bán hết</p>
+    </ng-template>
     <mat-tab-group style="margin-top: 20px;">
       <mat-tab label="Mô tả chính">
         <div style="margin-top: 10px;">
@@ -27,7 +35,7 @@
   <h2>Sản phẩm HOT</h2>
   <p>Có thể bạn sẽ thích</p>
   <div class="pro-container">
-    <div class="pro" *ngFor="let product of ProductisHot | paginate: { itemsPerPage: itemsPerPage, currentPage: p }" [routerLink]="['san-pham/chi-tiet-san-pham', product.productId]">
+    <div class="pro" *ngFor="let product of ProductisHot | paginate: { itemsPerPage: itemsPerPage, currentPage: p }" [routerLink]="['/trang-chu/san-pham']">
       <img [src]="'assets/products/' + product.productImage" alt="">
       <div class="des">
         <span>{{ getTenDanhMuc(product.categoryId) }}</span>

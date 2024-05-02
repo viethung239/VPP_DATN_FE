@@ -14,7 +14,9 @@ h4 {
   font-size: 20px;
   color: #222;
 }
-
+h3{
+  color: #088178;
+}
 h6 {
   font-weight: 700;
   font-size: 12px;
@@ -37,14 +39,12 @@ p {
 
 #prodetail .single-pro-details{
     width: 50%;
-    padding-top: 30px;
+
 
 }
-#prodetail .single-pro-details h4{
-  padding: 40px 0 20px 0;
-}
-#prodetail .single-pro-details h2{
-  font-size: 26px;
+
+#prodetail .single-pro-details span{
+  font-size: 20px;
 }
 #prodetail .single-pro-details input{
   width: 50px;

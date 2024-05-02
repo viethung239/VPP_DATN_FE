@@ -16,38 +16,28 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-              <td><i class="far fa-times-circle"></i></td>
-              <td><img src="/assets/img/products/f1.jpg" alt=""></td>
-              <td>A4 Pho to</td>
-              <td>$45.00</td>
-              <td><input type="number" value="1"></td>
-              <td>$45000</td>
+            <tr *ngFor="let item of cart; let i = index">
+              <!-- <td>
+              <button mat-fab extended >
+                <mat-icon >home</mat-icon>
+              </button>
+             </td> -->
+               <td ><a (click)="removeItem(i)" ><i class="far fa-times-circle"></i></a> </td>
+              <td><img [src]="'assets/products/' + item.product.productImage" ></td>
+              <td>{{ item.product.productName }}</td>
+              <td>{{ item.product.productPrice | currency:'VND' }}</td>
+              <td><input type="number" value="{{ item.quantity }}"></td>
+              <td>{{ item.product.productPrice * item.quantity | currency:'VND'}}</td>
             </tr>
-            <tr>
-              <td><i class="far fa-times-circle"></i></td>
-              <td><img src="/assets/img/products/f1.jpg" alt=""></td>
-              <td>A4 Pho to</td>
-              <td>$45.00</td>
-              <td><input type="number" value="1"></td>
-              <td>$45000</td>
-            </tr>
-            <tr>
-              <td><i class="far fa-times-circle"></i></td>
-              <td><img src="/assets/img/products/f1.jpg" alt=""></td>
-              <td>A4 Pho to</td>
-              <td>$45.00</td>
-              <td><input type="number" value="1"></td>
-              <td>$45000</td>
-            </tr>
+
         </tbody>
     </table>
 </section>
 <section id="cart-add" class="section-p1">
     <div id="coupon">
-        <h3>Appy Coupon</h3>
+        <h3>Nhập mã giảm giá</h3>
         <div>
-            <input type="text" placeholder="Enter your Coupon">
+            <input type="text" placeholder="Mã giảm giá của bạn">
             <button class="normal">Apply</button>
         </div>
     </div>
@@ -56,18 +46,18 @@
         <h3>Tổng đơn hàng</h3>
         <table>
             <tr>
-                <td>Cart Subtotal</td>
-                <td>$335</td>
+                <td>Tổng đơn hàng</td>
+                <td>{{ calculateSubtotal() | currency:'VND' }}</td>
             </tr>
             <tr>
-                <td>Shipping</td>
-                <td>Free</td>
+                <td>Giá vận chuyển</td>
+                <td>Miễn phí</td>
             </tr>
             <tr>
                 <td><strong>Tổng tiền</strong></td>
-                <td><strong>$335</strong></td>
+                <td><strong>{{ calculateSubtotal() | currency:'VND' }}</strong></td>
             </tr>
         </table>
-        <button class="normal">Thanh toán</button>
+        <button  (click)="checkout()" class="normal">Thanh toán</button>
     </div>
 </section>

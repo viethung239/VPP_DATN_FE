@@ -81,19 +81,19 @@ export class AddWareHouseComponent {
     dialogRef.componentInstance.selectionConfirmed.subscribe((result) => {
       console.log('Dữ liệu:', result);
       if (result) {
-        // Kiểm tra xem sản phẩm đã tồn tại trong kho chưa
+
         const existingIndex = this.wareHouseDetail.findIndex(item =>
           item.productId === result.productId && item.supplierId === result.supplierId);
 
         if (existingIndex !== -1) {
-          // Nếu sản phẩm đã tồn tại, cập nhật số lượng
+
           this.wareHouseDetail[existingIndex].quantity += result.quantity;
         } else {
-          // Nếu sản phẩm chưa tồn tại, thêm mới
+
           this.wareHouseDetail.push(result);
         }
 
-        // Cập nhật lại dataSource
+
         this.dataSource.data = this.wareHouseDetail;
       }
     });
@@ -128,8 +128,8 @@ export class AddWareHouseComponent {
       console.log('Dữ liệu trước khi gửi', newWH);
       this.wareHouseService.addWareHouse(newWH).subscribe({
         next: () => {
-          console.log('Thêm người dùng thành công');
-          this.snackBar.open('Thêm người dùng thành công', 'Đóng', { duration: 3000 });
+          console.log('Thêm kho thành công');
+          this.snackBar.open('Thêm kho thành công', 'Đóng', { duration: 3000 });
           this.router.navigate(['admin/kho/danh-sach-kho']);
 
           this.sendWareHouseDetails();

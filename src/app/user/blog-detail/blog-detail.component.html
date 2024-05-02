@@ -1,0 +1,13 @@
+<div *ngIf="post" id="post-detail" class="section-p1">
+  <h2 class="section-m1">{{ post.postName }}</h2>
+  <img src="assets/blog/{{ post.postImg }}">
+  <div class="section-m1">
+    <div >
+     <span>Tác giả: {{ getTenTacGia(post.userId) }} | Ngày đăng: {{ post.dateCreated| date:'dd/MM/yyyy HH:mm:ss' }}</span>
+    </div>
+    <p>{{ post.sContent }}</p>
+    <br>
+    <p>{{ post.lContent }}</p>
+  </div>
+</div>
+
