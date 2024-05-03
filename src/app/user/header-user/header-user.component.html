@@ -15,7 +15,7 @@
       <ng-container *ngIf="isLoggedIn">
         <li><a [routerLink]="'trang-chu/gio-hang'" routerLinkActive="active"><mat-icon matBadge="{{ cartService.getCartItemCount() }}" matBadgeColor="warn"
               aria-hidden="false">shopping_cart</mat-icon></a></li>
-        <li><a [routerLink]="'trang-chu/trang-ca-nhan'"><mat-icon>person</mat-icon></a></li>
+        <li><a [routerLink]="'trang-chu/trang-ho-so'"><mat-icon>person</mat-icon></a></li>
         <li><a (click)="logout()" [routerLink]="'login'">Đăng xuất</a></li>
 
       </ng-container>

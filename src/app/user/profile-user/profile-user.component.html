@@ -1,0 +1,177 @@
+<div id="profile" class="section-p1">
+<mat-card-header>
+  <div mat-card-avatar class="avatar-container" (click)="fileInput.click()">
+    <img *ngIf="userData?.avartar" [src]="'assets/users/' + userData.avartar" class="profile-image" #avatarImage>
+    <mat-icon class="camera-icon">photo_camera</mat-icon>
+  </div>
+  <div class="title">
+    <mat-card-title>{{ userData?.fullName }}</mat-card-title>
+    <mat-card-subtitle>#{{ userData?.userName }}</mat-card-subtitle>
+  </div>
+  <input type="file" #fileInput style="display:none;" (change)="onFileSelected($event)">
+  <video #videoElement style="display:none;" autoplay></video>
+</mat-card-header>
+
+<div class="container">
+  <mat-card class="overflow-hidden">
+    <div class="d-flex">
+      <div class="col-md-3 pt-0">
+        <mat-tab-group>
+          <mat-tab label="Đơn hàng đã mua">
+            <div class="mat-elevation-z8">
+              <table mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="orderCode">
+                  <th mat-header-cell *matHeaderCellDef>Mã đơn hàng</th>
+                  <td mat-cell *matCellDef="let element">{{ element.orderCode }}</td>
+                </ng-container>
+                <ng-container matColumnDef="status">
+                  <th mat-header-cell *matHeaderCellDef>Trang thái giao hàng</th>
+                  <td mat-cell *matCellDef="let element"> {{ getStatus(element.status) }} </td>
+                </ng-container>
+                <ng-container matColumnDef="paymentType">
+                  <th mat-header-cell *matHeaderCellDef>Kiểu thanh toán</th>
+                  <td mat-cell *matCellDef="let element"> {{element.paymentType ? 'Thanh toán qua ngân hàng' : 'Thanh toán khi nhận hàng'}} </td>
+                </ng-container>
+                <ng-container matColumnDef="dateCreated">
+                  <th mat-header-cell *matHeaderCellDef> Ngày đặt hàng </th>
+                  <td mat-cell *matCellDef="let element"> {{element.dateCreated| date:'yyyy-MM-dd HH:mm:ss'}} </td>
+                </ng-container>
+                <ng-container matColumnDef="actions">
+                  <th mat-header-cell *matHeaderCellDef style="text-align: center;"> # </th>
+                  <td mat-cell *matCellDef="let element" class="action-buttons" style="text-align: center;">
+                    <button mat-fab color="primary" (click)="openDialogEdit(element.orderId)" style="margin-right: 12px;">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-fab color="warn" (click)="openDialogDetail(element.orderId)">
+                      <mat-icon>layers</mat-icon>
+                    </button>
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+
+              <mat-paginator [pageSizeOptions]="[8, 16, 24]" showFirstLastButtons aria-label="Select page of periodic elements">
+              </mat-paginator>
+            </div>
+          </mat-tab>
+          <form [formGroup]="ProfileForm">
+
+            <mat-tab label="Thông tin chung">
+              <div class="tab-pane">
+                <mat-form-field class="example-width">
+                  <mat-label>Họ và tên</mat-label>
+                  <input matInput formControlName="fullName">
+                </mat-form-field>
+                <mat-form-field class="example-width">
+                  <mat-label>Email</mat-label>
+                  <input matInput formControlName="email">
+                </mat-form-field>
+
+                <mat-form-field class="example-width">
+                  <mat-label>Số điện thoại</mat-label>
+                  <input matInput formControlName="phone">
+                </mat-form-field>
+
+                <mat-form-field class="example-width">
+                  <mat-label>Địa chỉ</mat-label>
+                  <input matInput formControlName="address">
+                </mat-form-field>
+
+                <mat-form-field class="example-width">
+                  <mat-label>Xã</mat-label>
+                  <mat-select formControlName="comune">
+                    <mat-option *ngFor="let comune of communes" [value]="comune">{{ comune }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="example-width">
+                  <mat-label>Huyện</mat-label>
+                  <mat-select formControlName="district">
+                    <mat-option *ngFor="let district of districts" [value]="district">{{ district }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="example-width">
+                  <mat-label>Thành phố</mat-label>
+                  <mat-select formControlName="city">
+                    <mat-option *ngFor="let city of cities" [value]="city">{{ city }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="example-width">
+                  <mat-label>Giới tính</mat-label>
+                  <mat-select formControlName="gender">
+                    <mat-option [value]="0">Nam</mat-option>
+                    <mat-option [value]="1">Nữ</mat-option>
+                    <mat-option [value]="2">Khác</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="example-width">
+                  <mat-label>Ngày sinh</mat-label>
+                  <input matInput [matDatepicker]="picker1" formControlName="birthDay">
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field class="example-width">
+                  <mat-label>Ngày tạo tài khoản</mat-label>
+                  <input matInput [matDatepicker]="picker2" [readonly]="true" formControlName="dateCreated">
+                  <mat-datepicker-toggle matSuffix [for]="picker2" [disabled]="true"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="text-right">
+                <button mat-fab color="primary" class="edit-btn" (click)="onSubmit()">
+                  <mat-icon>save</mat-icon>
+                </button>
+              </div>
+
+            </mat-tab>
+          </form>
+          <mat-tab label="Đổi mật khẩu">
+            <form [formGroup]="changePasswordForm">
+              <mat-form-field class="example-width-mk">
+                <mat-label>Mật khẩu hiện tại</mat-label>
+                <input matInput formControlName="currentPassword" [type]="currentPasswordHide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="currentPasswordHide = !currentPasswordHide"
+                        [attr.aria-label]="currentPasswordHide ? 'Hide password' : 'Show password'" [attr.aria-pressed]="currentPasswordHide">
+                  <mat-icon>{{ currentPasswordHide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+              </mat-form-field>
+
+              <mat-form-field class="example-width-mk">
+                <mat-label>Mật khẩu mới</mat-label>
+                <input matInput formControlName="newPassword" [type]="newPasswordHide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="newPasswordHide = !newPasswordHide"
+                        [attr.aria-label]="newPasswordHide ? 'Hide password' : 'Show password'" [attr.aria-pressed]="newPasswordHide">
+                  <mat-icon>{{ newPasswordHide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+              </mat-form-field>
+
+              <mat-form-field class="example-width-mk">
+                <mat-label>Nhập lại mật khẩu mới</mat-label>
+                <input matInput formControlName="confirmPassword" [type]="confirmPasswordHide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="confirmPasswordHide = !confirmPasswordHide"
+                        [attr.aria-label]="confirmPasswordHide ? 'Hide password' : 'Show password'" [attr.aria-pressed]="confirmPasswordHide">
+                  <mat-icon>{{ confirmPasswordHide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>
+              </mat-form-field>
+              <div class="text-right">
+                <button mat-fab color="primary" class="edit-btn" (click)="changePassword()">
+                  <mat-icon>save</mat-icon>
+                </button>
+              </div>
+          </form>
+          </mat-tab>
+
+        </mat-tab-group>
+      </div>
+
+    </div>
+
+  </mat-card>
+
+</div>
+</div>

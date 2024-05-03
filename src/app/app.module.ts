@@ -38,6 +38,17 @@ import { CartUserComponent } from './user/cart-user/cart-user.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { BlogDetailComponent } from './user/blog-detail/blog-detail.component';
+import { ProfileUserComponent } from './user/profile-user/profile-user.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { StatusDialogComponent } from './user/profile-user/status-dialog/status-dialog.component';
+import { DetailCartComponent } from './user/profile-user/detail-cart/detail-cart.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +70,9 @@ import { BlogDetailComponent } from './user/blog-detail/blog-detail.component';
     AboutUserComponent,
     CartUserComponent,
     BlogDetailComponent,
+    ProfileUserComponent,
+    StatusDialogComponent,
+    DetailCartComponent,
 
 
     //
@@ -83,8 +97,20 @@ import { BlogDetailComponent } from './user/blog-detail/blog-detail.component';
     MatCardModule,
     MatTabsModule,
     NgxPaginationModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatNativeDateModule,
+    MatInputModule,
+
     ///
+
+
+
+
+
 
 
 

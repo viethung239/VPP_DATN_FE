@@ -1,0 +1,16 @@
+
+<form [formGroup]="OrderForm" class="example-form">
+
+  <mat-form-field class="edit-form">
+    <mat-select formControlName="status" placeholder="Chọn">
+      <mat-option [value]="3">Hủy đơn hàng</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="dialog-actions">
+    <button mat-button (click)="closeDialog()">Đóng</button>
+    <button mat-button color="primary" (click)="confirm()" >Xác nhận</button>
+  </div>
+</form>
+
+

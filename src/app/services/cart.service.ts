@@ -8,7 +8,14 @@ export class CartService {
   cart: any[] = [];
 
   addToCart(item: any) {
-    this.cart.push(item);
+    const ItemIndex = this.cart.findIndex(cartItem => cartItem.product.productId === item.product.productId);
+    if (ItemIndex > -1) {
+
+      this.cart[ItemIndex].quantity += item.quantity;
+    } else {
+
+      this.cart.push(item);
+    }
   }
 
   getCart() {

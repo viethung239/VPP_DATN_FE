@@ -1,0 +1,27 @@
+<section id="cart">
+  <table width="100%">
+      <thead>
+          <tr>
+              <td>Ảnh sản phẩm</td>
+              <td>Sản phẩm</td>
+              <td>Giá</td>
+              <td>Số lượng</td>
+              <td>Tổng tiền</td>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let detail of orderdetails">
+            <td><img  [src]="getAnhSanPham(detail.productId)"></td>
+            <td>{{ getTenSanPham(detail.productId) }}</td>
+            <td>{{ detail.price }}</td>
+            <td>{{ detail.quantity }}</td>
+            <td> {{ detail.total }}</td>
+          </tr>
+
+      </tbody>
+  </table>
+
+</section>
+<div class="dialog-actions">
+  <button mat-button color="primary" (click)="closeDialog()" >Đóng</button>
+</div>

@@ -9,7 +9,7 @@
     <h3><span>{{product.productPrice | currency:'VND'}}</span></h3>
 
     <div *ngIf="getQuantityByWarehouse() > 0" class="section-m1">
-    <input type="number" #quantityInput value="1">
+    <input type="number" #quantityInput value="1" min="1">
     <button (click)="addToCart(+quantityInput.value)" class="normal">Thêm vào giỏ</button>
     </div>
     <p *ngIf="getQuantityByWarehouse() > 0; else soldOutMessage">Số lượng trong kho {{ getQuantityByWarehouse() }} sản phẩm</p>

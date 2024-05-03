@@ -1,18 +1,16 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ListOrderComponent } from '../list-order/list-order.component';
+import { OrderService } from '../../../services/order.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { OrderService } from '../../../../services/order.service';
-;
-
+import { ProfileUserComponent } from '../profile-user.component';
 
 @Component({
-  selector: 'app-order-status',
-  templateUrl: './order-status.component.html',
-  styleUrl: './order-status.component.scss'
+  selector: 'app-status-dialog',
+  templateUrl: './status-dialog.component.html',
+  styleUrl: './status-dialog.component.scss'
 })
-export class OrderStatusComponent {
+export class StatusDialogComponent {
   OrderForm!: FormGroup;
   orderId: string | null;
   ngayTaoOriginal: string | null;
@@ -26,7 +24,7 @@ export class OrderStatusComponent {
     @Inject(MAT_DIALOG_DATA) public data: { orderId: string },
     private fb: FormBuilder,  private orderService: OrderService,
     private snackBar: MatSnackBar,
-    private dialogRef: MatDialogRef<ListOrderComponent>) {
+    private dialogRef: MatDialogRef<ProfileUserComponent>) {
     this.orderId = data.orderId;
     this.ngayTaoOriginal = null;
     this.userId = null;
@@ -41,11 +39,6 @@ export class OrderStatusComponent {
     this.OrderForm = this.fb.group({
     orderId: this.orderId,
     status: ['',  Validators.required],
-    // userId: ['',  Validators.required],
-    // totalAmount: ['', Validators.required],
-    // orderCode: ['' , Validators.required],
-    // paymentType: ['', , Validators.required],
-    // note: ['' , Validators.required],
     dateUpdated: [this.getCurrentDateTime(), Validators.required],
 
 
@@ -103,8 +96,7 @@ export class OrderStatusComponent {
 
       this.orderService.updateOrder(this.orderId, updatedOrder).subscribe({
         next: () => {
-          console.log('Cập nhật trạng thái thành công');
-          this.snackBar.open('Sửa trạng thái đơn hàng thành công', 'Đóng', {
+          this.snackBar.open('Bạn đã hủy đơn hàng thành công', 'Đóng', {
             duration: 3000,
           });
           this.closeDialog();

@@ -13,6 +13,7 @@ import { ProductDetailShopComponent } from './user/product-detail-shop/product-d
 import { AboutUserComponent } from './user/about-user/about-user.component';
 import { CartUserComponent } from './user/cart-user/cart-user.component';
 import { BlogDetailComponent } from './user/blog-detail/blog-detail.component';
+import { ProfileUserComponent } from './user/profile-user/profile-user.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'login',pathMatch:'full'},
@@ -52,6 +53,11 @@ const routes: Routes = [
 
         path: 'trang-chu/ve-chung-toi',
         component: AboutUserComponent
+      },
+      {
+
+        path: 'trang-chu/trang-ho-so',
+        component: ProfileUserComponent
       },
       {
         canActivate: [AuthUserGuard],
