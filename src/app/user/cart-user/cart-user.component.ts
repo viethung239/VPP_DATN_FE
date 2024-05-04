@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class CartUserComponent {
   cart: any[] = [];
   userId: string | null;
+  orderNote: string = '';
   constructor(private cartService: CartService,
     private orderService: OrderService,
     private orderDetailsService: OrderdetailsService,
@@ -49,6 +50,9 @@ export class CartUserComponent {
     return uuidv4();
   }
   checkout(): void {
+    if (!this.orderNote) {
+      this.orderNote = 'Không có lưu ý';
+    }
     const order = {
       orderId:  this.generateRandomOrderId(),
       userId: this.userId,
@@ -56,11 +60,11 @@ export class CartUserComponent {
       orderCode: this.generateRandomOrderCode(),
       paymentType: 0,
       status: 0,
-      note: '',
+      note: this.orderNote,
       dateCreated: this.getCurrentDateTime(),
       dateUpdated: this.getCurrentDateTime()
     };
-
+    order.note = this.orderNote;
     this.orderService.addOrder(order).subscribe({
       next: () => {
 

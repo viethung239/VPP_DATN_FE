@@ -47,7 +47,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { StatusDialogComponent } from './user/profile-user/status-dialog/status-dialog.component';
 import { DetailCartComponent } from './user/profile-user/detail-cart/detail-cart.component';
-
+import { MatTreeModule } from '@angular/material/tree';
 
 @NgModule({
   declarations: [
@@ -104,7 +104,7 @@ import { DetailCartComponent } from './user/profile-user/detail-cart/detail-cart
     MatSelectModule,
     MatNativeDateModule,
     MatInputModule,
-
+    MatTreeModule
     ///
 
 

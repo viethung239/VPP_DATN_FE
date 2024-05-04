@@ -33,12 +33,11 @@
         </tbody>
     </table>
 </section>
-<section id="cart-add" class="section-p1">
+<section id="cart-add" class="section-p1" *ngIf="cart.length > 0">
     <div id="coupon">
-        <h3>Nhập mã giảm giá</h3>
+        <h3>Chú thích đơn hàng</h3>
         <div>
-            <input type="text" placeholder="Mã giảm giá của bạn">
-            <button class="normal">Apply</button>
+            <input type="text" placeholder="Nhập nếu bạn cần lưu ý cho đơn hàng"  [(ngModel)]="orderNote">
         </div>
     </div>
 

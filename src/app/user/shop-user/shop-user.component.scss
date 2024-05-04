@@ -40,27 +40,36 @@ p {
 #page-header p{
   color: #fff;
 }
+.contentpro{
+  display: flex;
 
+}
 #product1{
+
   text-align: center;
+  width: 90%;
 }
 #product1 .pro-container{
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding-top: 20px;
   flex-wrap: wrap;
+
+
 }
 #product1 .pro{
-  width: 23%;
-  min-width: 250px;
+  width: 24%;
+  min-width: 210px;
   padding: 10px 12px;
   border: 1px solid #cce7d0;
   border-radius: 25px;
   cursor: pointer;
   box-shadow: 20px 20px 30px rgba(0,0,0,0.02);
-  margin: 15px 0;
+  margin-bottom: 15px; /* Thêm margin bottom để tạo khoảng cách giữa các hàng */
+  margin-right: 10px;
   transition: 0.2s ease;
   position: relative;
+
 }
 #product1 .pro:hover{
   box-shadow: 20px 20px 30px rgba(0,0,0,0.06);
@@ -171,4 +180,60 @@ p {
   .ngx-pagination button:hover{
       background: initial !important;
   }
+}
+
+
+.mat-tree {
+  background-color: #f4f7fa;
+}
+.example-tree-invisible {
+  display: none;
+
+}
+
+.example-tree ul,
+.example-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+
+}
+
+.example-tree .mat-nested-tree-node div[role=group] {
+  padding-left: 40px;
+}
+
+.example-tree div[role=group] > .mat-tree-node {
+  padding-left: 40px;
+}
+
+#sideleft{
+  margin-top: 65px;
+  margin-left: 30px;
+  width: 20%;
+
+}
+
+#sideleft .form{
+  display: flex;
+  width: 280px;
+}
+#sideleft input{
+  height: 3rem;
+  padding: 0 1.25rem;
+  font-size: 14px;
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  outline: none;
+  border-top-right-radius:0 ;
+  border-bottom-right-radius:0 ;
+}
+#sideleft .form button{
+  background-color: #088178;
+  color: #fff;
+  height: 3rem;
+  white-space: nowrap;
+  border-top-left-radius:0 ;
+  border-bottom-left-radius:0 ;
 }
