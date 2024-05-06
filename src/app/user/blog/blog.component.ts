@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { PostService } from '../../services/post.service';
+import { PostData } from '../../admin/main-post/post/list-post/list-post.component';
 
 @Component({
   selector: 'app-blog',
@@ -41,7 +42,7 @@ export class BlogComponent {
     this.postService.getListPost().subscribe({
       next: (data) => {
 
-        this.Post = data
+        this.Post = data.filter((post: PostData) => post.isActive === true);
       },
       error: (error) => {
         console.error(error);

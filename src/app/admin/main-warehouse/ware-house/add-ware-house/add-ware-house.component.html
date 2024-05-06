@@ -22,13 +22,17 @@
     <ng-container matColumnDef="productId">
       <th mat-header-cell *matHeaderCellDef> Sản phẩm</th>
       <td mat-cell *matCellDef="let element">
-        {{ getTenSanPham(element.productId) }}
+        <ng-container *ngIf="element.isActive">
+          {{ getTenSanPham(element.productId) }}
+        </ng-container>
       </td>
     </ng-container>
     <ng-container matColumnDef="supplierId">
       <th mat-header-cell *matHeaderCellDef> Nhà cung cấp</th>
       <td mat-cell *matCellDef="let element">
+        <ng-container *ngIf="element.isActive">
         {{ getTenNhaCungCap(element.supplierId) }}
+      </ng-container>
       </td>
     </ng-container>
     <ng-container matColumnDef="quantity">

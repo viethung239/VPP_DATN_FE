@@ -142,6 +142,7 @@ export class AuthService {
         userId: decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/dsa'],
         roles: decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'],
         isAdmin: decodedToken['http://schemas.xmlsoap.org/ws/2009/09/identity/claims/actor'] === 'True',
+        isActive: decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dns'] === 'True'? true : false,
         decodedToken: decodedToken
       };
     }

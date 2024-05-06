@@ -87,7 +87,8 @@ export interface PostData {
   postImg: string,
   sContent: string,
   lContent: string,
-  isActive: string,
+  isActive: boolean,
+  isHot: boolean,
   dateCreated: string,
   dateUpdated: string
 }

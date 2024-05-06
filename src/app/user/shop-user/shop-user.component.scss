@@ -45,9 +45,9 @@ p {
 
 }
 #product1{
-
+  margin-left: 100px;
   text-align: center;
-  width: 90%;
+  width: 80%;
 }
 #product1 .pro-container{
   display: flex;
@@ -58,14 +58,14 @@ p {
 
 }
 #product1 .pro{
-  width: 24%;
-  min-width: 210px;
+  width: 20%;
+  min-width: 200px;
   padding: 10px 12px;
   border: 1px solid #cce7d0;
   border-radius: 25px;
   cursor: pointer;
   box-shadow: 20px 20px 30px rgba(0,0,0,0.02);
-  margin-bottom: 15px; /* Thêm margin bottom để tạo khoảng cách giữa các hàng */
+  margin-bottom: 15px;
   margin-right: 10px;
   transition: 0.2s ease;
   position: relative;
@@ -210,7 +210,7 @@ p {
 #sideleft{
   margin-top: 65px;
   margin-left: 30px;
-  width: 20%;
+  width: 18%;
 
 }
 

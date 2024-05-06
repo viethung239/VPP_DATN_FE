@@ -1,12 +1,12 @@
 .sidenav {
-  background: #363831;
+  background: #8b9e37;
   transition: all .5s ease;
   position: fixed;
   z-index: 2;
   top: 0;
   width: 5rem;
   height: 100vh;
-  box-shadow: 0.063rem 0 1.25rem 0 #8690a3;
+  box-shadow: 0.063rem 0 1.25rem 0 #8b9e37;
 
   .logo-container {
       display: flex;
@@ -133,7 +133,7 @@
           display: flex;
           align-items: center;
           height: 3rem;
-          color: #898989;
+          color: #f9f5f5;
           text-decoration: none;
           border-radius: 0.625rem;
           transition: all .3s ease;
@@ -152,7 +152,7 @@
       }
 
       .sublevel-nav-link:hover {
-          color: #f3f3f3;
+          color: #d2f704;
       }
   }
 }

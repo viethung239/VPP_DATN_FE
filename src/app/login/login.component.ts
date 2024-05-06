@@ -60,15 +60,21 @@ export class LoginComponent {
         })
       )
       .subscribe(response => {
-        const token = response.token;
+        const userInfo = this.authService.getUserInfoFromToken();
+        if (userInfo && userInfo.isActive === false) {
 
-        this.authService.saveToken(token);
-        console.log('Đăng nhập thành công', token);
-
-        this.snackBar.open('Đăng nhập thành công', 'Đóng', {
-          duration: 3000,
-        });
-        this.router.navigate(['admin/trang-chu']);
+          this.snackBar.open('Tài khoản của bạn không hoạt động', 'Đóng', {
+            duration: 3000,
+          });
+        } else {
+          const token = response.token;
+          this.authService.saveToken(token);
+          console.log('Đăng nhập thành công', token);
+          this.snackBar.open('Đăng nhập thành công', 'Đóng', {
+            duration: 3000,
+          });
+          this.router.navigate(['admin/trang-chu']);
+        }
       });
   }
   Register(): void {

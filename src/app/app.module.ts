@@ -104,7 +104,7 @@ import { MatTreeModule } from '@angular/material/tree';
     MatSelectModule,
     MatNativeDateModule,
     MatInputModule,
-    MatTreeModule
+    MatTreeModule,
     ///
 
 

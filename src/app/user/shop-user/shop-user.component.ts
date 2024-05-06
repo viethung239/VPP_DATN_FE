@@ -4,13 +4,13 @@ import { CategoryService } from '../../services/category.service';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { GroupCategoryService } from '../../services/group-category.service';
+import { ProductData } from '../../admin/main-product/product/list-product/list-product.component';
 
 interface CategoryNode {
   categoryId?: string;
   Name: string;
   categoryGroupId?: string;
   children?: CategoryNode[];
-
 }
 @Component({
   selector: 'app-shop-user',
@@ -64,7 +64,7 @@ export class ShopUserComponent {
   getDataProduct(): void {
     this.productService.getListProduct().subscribe({
       next: (data) => {
-        this.Product = data;
+        this.Product = data.filter((product: ProductData) => product.isActive === true);
       },
       error: (error) => {
         console.error(error);
@@ -78,7 +78,7 @@ export class ShopUserComponent {
     const tree: CategoryNode[] = [];
     groupData.forEach(group => {
       const groupNode: CategoryNode = { Name: group.categoryGroupName, children: [] };
-      const children = categoryData.filter(category => category.categoryGroupId === group.categoryGroupId);
+      const children = categoryData.filter(category => category.categoryGroupId === group.categoryGroupId );
       if (children && children.length > 0) {
         children.forEach(child => {
           groupNode.children?.push({ categoryId: child.categoryId, Name: child.categoryName });

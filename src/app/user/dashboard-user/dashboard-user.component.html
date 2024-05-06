@@ -35,8 +35,9 @@
   <p>Các loại sản phẩm</p>
   <mat-tab-group class="prod">
     <mat-tab label="Sản phẩm mới">
-      <div class="pro-container" >
-        <div class="pro" *ngFor="let product of ProductisNew" [routerLink]="['san-pham/chi-tiet-san-pham', product.productId]">
+      <div class="pro-container">
+        <div class="pro" *ngFor="let product of ProductisNew"
+          [routerLink]="['san-pham/chi-tiet-san-pham', product.productId]">
           <img [src]="'assets/products/' + product.productImage">
           <div class="des">
             <span>{{ getTenDanhMuc(product.categoryId) }}</span>
@@ -57,7 +58,8 @@
     </mat-tab>
     <mat-tab label="Sản phẩm nổi bật">
       <div class="pro-container">
-        <div class="pro" *ngFor="let product of ProductisHot | paginate: { itemsPerPage: itemsPerPage, currentPage: p }" [routerLink]="['san-pham/chi-tiet-san-pham', product.productId]">
+        <div class="pro" *ngFor="let product of ProductisHot | paginate: { itemsPerPage: itemsProduct, currentPage: p, id: 'pagination1' }"
+          [routerLink]="['san-pham/chi-tiet-san-pham', product.productId]">
           <img [src]="'assets/products/' + product.productImage" alt="">
           <div class="des">
             <span>{{ getTenDanhMuc(product.categoryId) }}</span>
@@ -76,8 +78,8 @@
       </div>
 
       <div class="section-m1">
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
-    </div>
+        <pagination-controls  id="pagination1" (pageChange)="p = $event"></pagination-controls>
+      </div>
     </mat-tab>
 
   </mat-tab-group>
@@ -91,7 +93,63 @@
   <button class="normal">Xem thêm</button>
 </section>
 
+<section id="blog">
 
+  <div class="container">
+    <h2>Tin tức</h2>
+    <mat-tab-group>
+      <mat-tab label="Tin tức mới">
+        <div class="card-container">
+          <div class="card" *ngFor="let post of PostisNew" [routerLink]="['tin-tuc/chi-tiet-tin', post.postId]">
+            <div class="card__header">
+              <img [src]="'assets/blog/' + post.postImg" alt="card__image" class="card__image" width="600">
+            </div>
+            <div class="card__body">
+              <h4>{{post.postName}}</h4>
+              <p>{{post.sContent}}</p>
+            </div>
+            <div class="card__footer">
+              <div class="user">
+                <img [src]="getAnhTacGia(post.userId)" alt="user__image" class="user__image">
+                <div class="user__info">
+                  <h5>{{ getTenTacGia(post.userId) }}</h5>
+                  <small>{{post.dateCreated | date:'dd-MM-yyyy'}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Tin tức hot">
+
+        <div class="card-container" >
+          <div class="card" *ngFor="let post of PostisHot | paginate: { itemsPerPage: itemsPost, currentPage: a, id: 'pagination2' }" [routerLink]="['tin-tuc/chi-tiet-tin', post.postId]" >
+            <div class="card__header">
+              <img [src]="'assets/blog/' + post.postImg" alt="card__image" class="card__image" width="600">
+            </div>
+            <div class="card__body">
+              <h4 >{{post.postName}}</h4>
+              <p>{{post.sContent }}</p>
+            </div>
+            <div class="card__footer">
+              <div class="user">
+                <img [src]="getAnhTacGia(post.userId)" alt="user__image" class="user__image">
+                <div class="user__info">
+                  <h5>{{ getTenTacGia(post.userId) }}</h5>
+                  <small>{{post.dateCreated | date:'dd-MM-yyyy'}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section-m1">
+          <pagination-controls id="pagination2" (pageChange)="a = $event"></pagination-controls>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+</section>
 <section id="sm-banner" class="section-p1">
   <div class="banner-box">
     <h4>Giảm giá sốc</h4>
@@ -106,6 +164,7 @@
     <button class="white">Xem thêm</button>
   </div>
 </section>
+
 
 <section id="banner3">
   <div class="banner-box">

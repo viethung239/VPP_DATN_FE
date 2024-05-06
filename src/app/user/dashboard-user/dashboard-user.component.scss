@@ -100,23 +100,27 @@ p {
 #product1{
   text-align: center;
 }
-#product1 .pro-container {
+#product1 .pro-container{
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding-top: 20px;
   flex-wrap: wrap;
+
+
 }
 #product1 .pro{
-  width: 23%;
-  min-width: 250px;
+  width: 24%;
+  min-width: 210px;
   padding: 10px 12px;
   border: 1px solid #cce7d0;
   border-radius: 25px;
   cursor: pointer;
   box-shadow: 20px 20px 30px rgba(0,0,0,0.02);
-  margin: 15px 0;
+  margin-bottom: 15px;
+  margin-right: 10px;
   transition: 0.2s ease;
   position: relative;
+
 }
 #product1 .pro:hover{
   box-shadow: 20px 20px 30px rgba(0,0,0,0.06);
@@ -323,4 +327,87 @@ p {
   .ngx-pagination button:hover{
       background: initial !important;
   }
+}
+///
+#blog{
+  margin-top: -10px;
+
+
+}
+#blog .container h2{
+  text-align: center;
+}
+
+#blog img {
+  max-width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+#blog .card {
+  display: flex;
+  flex-direction: column;
+  width: clamp(20rem, calc(20rem + 2vw), 22rem);
+  overflow: hidden;
+  box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.1);
+  border-radius: 1em;
+  background: #aeaca9;
+  background: linear-gradient(to right, #FFFFFF, #ECE9E6);
+
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+}
+
+
+#blog .card__body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+
+}
+
+
+#blog .tag {
+  align-self: flex-start;
+  padding: .25em .75em;
+  border-radius: 1em;
+  font-size: .75rem;
+}
+
+#blog .tag + .tag {
+  margin-left: .5em;
+}
+
+
+
+#blog .card__body h4 {
+  font-size: 1.5rem;
+  text-transform: capitalize;
+}
+
+#blog .card__footer {
+  display: flex;
+  padding: 1rem;
+  margin-top: auto;
+}
+
+#blog .user {
+  display: flex;
+  gap: .5rem;
+
+}
+
+#blog .user__image {
+  border-radius: 50%;
+  max-height: 40px;
+}
+
+#blog .user__info > small {
+  color: #666;
 }
