@@ -39,8 +39,9 @@
                 <ng-container matColumnDef="actions">
                   <th mat-header-cell *matHeaderCellDef style="text-align: center;"> # </th>
                   <td mat-cell *matCellDef="let element" class="action-buttons" style="text-align: center;">
-                    <button mat-fab color="primary" (click)="openDialogEdit(element.orderId)" style="margin-right: 12px;">
-                      <mat-icon>edit</mat-icon>
+                    <button mat-fab color="primary" (click)="openDialogEdit(element.orderId)" style="margin-right: 12px;"
+                         *ngIf="element.status !== 3">
+                        <mat-icon>edit</mat-icon>
                     </button>
                     <button mat-fab color="warn" (click)="openDialogDetail(element.orderId)">
                       <mat-icon>layers</mat-icon>
@@ -50,8 +51,7 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
               </table>
-
-              <mat-paginator [pageSizeOptions]="[8, 16, 24]" showFirstLastButtons aria-label="Select page of periodic elements">
+               <mat-paginator [pageSizeOptions]="[6, 12]" showFirstLastButtons aria-label="Select page of periodic elements">
               </mat-paginator>
             </div>
           </mat-tab>

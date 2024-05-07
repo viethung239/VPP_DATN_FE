@@ -127,6 +127,7 @@ export class AddUserComponent {
     });
   }
   onSubmit() {
+    console.log('onSubmit() function is called');
     if (this.UserForm.valid) {
       const newUser = {
         ...this.UserForm.value,
@@ -164,9 +165,7 @@ export class AddUserComponent {
       });
     });
   }
-  UserRoles(): boolean {
-    return this.userRole.length > 0;
-  }
+
 }
 export interface UserRoles {
 

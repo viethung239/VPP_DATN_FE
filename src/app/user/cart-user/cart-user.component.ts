@@ -1,3 +1,4 @@
+import { WareHouseDetailsService } from './../../services/ware-house-details.service';
 import { Component } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { OrderService } from '../../services/order.service';
@@ -19,6 +20,7 @@ export class CartUserComponent {
     private orderService: OrderService,
     private orderDetailsService: OrderdetailsService,
     private authService : AuthService,
+    private warehouseDetailService: WareHouseDetailsService,
     private router: Router, private snackBar: MatSnackBar
   ) {
     this.cart = this.cartService.getCart();
@@ -71,6 +73,7 @@ export class CartUserComponent {
         this.snackBar.open('Đơn hàng đã được đặt thành công', 'Đóng', { duration: 3000 });
 
         this.sendOrderDetails(order.orderId);
+        this.updateProductQuantitiesInStock();
         this.cartService.clearCart();
         this.cart = [];
         this.router.navigate(['trang-chu/gio-hang']);
@@ -103,4 +106,55 @@ export class CartUserComponent {
       });
     });
   }
+  updateProductQuantitiesInStock(): void {
+
+    this.cart.forEach(item => {
+      const productId = item.product.productId;
+      const quantityToReduce = item.quantity;
+
+      let maxQuantityWarehouse: WarehouseDetail | null = null;
+      let maxQuantity = 0;
+
+
+      this.warehouseDetailService.getListWareHouseDetail().subscribe((warehouseDetails: any) => {
+
+        warehouseDetails.forEach((warehouseDetail: any) => {
+
+          if (warehouseDetail.productId === productId && warehouseDetail.quantity > maxQuantity) {
+            maxQuantity = warehouseDetail.quantity;
+            maxQuantityWarehouse = warehouseDetail;
+          }
+        });
+
+        if (maxQuantityWarehouse) {
+          const warehouseId = maxQuantityWarehouse.wareHouseId;
+          const currentQuantity = maxQuantityWarehouse.quantity;
+          const updatedQuantity = currentQuantity - quantityToReduce;
+          const dataToUpdate = {
+            ...maxQuantityWarehouse,
+            quantity: updatedQuantity
+          };
+          this.warehouseDetailService.updateWareHouseDetail(maxQuantityWarehouse.wareHouseDetailId, dataToUpdate).subscribe({
+            next: () => {
+              console.log(`Đã trừ đi ${quantityToReduce} sản phẩm từ kho ${warehouseId}`);
+            },
+            error: (error) => {
+              console.error(`Error updating product quantity in stock for warehouse ${warehouseId}:`, error);
+            }
+          });
+        }
+      });
+    });
+  }
+
+}
+export interface WarehouseDetail {
+  wareHouseDetailId: string;
+  wareHouseId: string;
+  productId: string;
+  supplierId: string;
+  quantity: number;
+  isActive: boolean;
+  dateCreated: string;
+  dateUpdated: string;
 }

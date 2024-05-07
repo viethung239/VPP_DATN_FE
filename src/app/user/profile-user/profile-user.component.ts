@@ -73,8 +73,11 @@ export class ProfileUserComponent {
       confirmPassword: ['', Validators.required]
     });
   }
-
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+  }
   ngOnInit(): void {
+
     const userInfo = this.authService.getUserInfoFromToken();
     if (userInfo) {
       this.userId = userInfo.userId;
@@ -83,10 +86,6 @@ export class ProfileUserComponent {
     } else {
       this.userId = null;
     }
-    this.dataSource.paginator = this.paginator;
-
-
-
   }
   onFileSelected(event: any): void {
     const selectedFile = event.target.files[0];

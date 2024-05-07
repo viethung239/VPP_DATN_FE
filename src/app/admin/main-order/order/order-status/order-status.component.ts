@@ -4,6 +4,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ListOrderComponent } from '../list-order/list-order.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { OrderService } from '../../../../services/order.service';
+import { WareHouseDetailsService } from '../../../../services/ware-house-details.service';
+import { WarehouseDetail } from '../../../../user/cart-user/cart-user.component';
 ;
 
 
@@ -25,6 +27,7 @@ export class OrderStatusComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { orderId: string },
     private fb: FormBuilder,  private orderService: OrderService,
+    private warehouseDetailService: WareHouseDetailsService,
     private snackBar: MatSnackBar,
     private dialogRef: MatDialogRef<ListOrderComponent>) {
     this.orderId = data.orderId;
@@ -41,14 +44,7 @@ export class OrderStatusComponent {
     this.OrderForm = this.fb.group({
     orderId: this.orderId,
     status: ['',  Validators.required],
-    // userId: ['',  Validators.required],
-    // totalAmount: ['', Validators.required],
-    // orderCode: ['' , Validators.required],
-    // paymentType: ['', , Validators.required],
-    // note: ['' , Validators.required],
     dateUpdated: [this.getCurrentDateTime(), Validators.required],
-
-
     });
 
 
