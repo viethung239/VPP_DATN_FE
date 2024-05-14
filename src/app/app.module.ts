@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -120,8 +120,11 @@ import { MatTreeModule } from '@angular/material/tree';
     [provideHttpClient(withFetch()),JwtHelperService],
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     provideAnimationsAsync(),
-    { provide: MAT_DATE_LOCALE, useValue: 'vi-VN' }
+    { provide: MAT_DATE_LOCALE, useValue: 'vi-VN' },
+
+
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
