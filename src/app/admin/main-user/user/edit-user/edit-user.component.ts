@@ -7,7 +7,6 @@ import { DataVN } from '../../../../dataVN/data-vn';
 import { DatePipe } from '@angular/common';
 import { UserRoleService } from '../../../../services/user-role.service';
 import { RoleService } from '../../../../services/role.service';
-import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { UserRoleComponent } from '../user-role/user-role.component';
 @Component({

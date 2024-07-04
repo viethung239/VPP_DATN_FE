@@ -1,11 +1,12 @@
 import { WareHouseDetailsService } from './../../services/ware-house-details.service';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { CategoryService } from '../../services/category.service';
 import { ProductData } from '../../admin/main-product/product/list-product/list-product.component';
 import { CartService } from '../../services/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-product-detail-shop',
@@ -24,8 +25,10 @@ export class ProductDetailShopComponent {
   constructor(private route: ActivatedRoute,
     private productService: ProductService,
     private categoryService : CategoryService,
+    private authService: AuthService,
     private wareHouseDetailsService :  WareHouseDetailsService,
     private cartService: CartService ,
+    private router: Router,
     private snackBar: MatSnackBar) {
     this.productId = null;
 
@@ -80,15 +83,31 @@ export class ProductDetailShopComponent {
     });
     return totalQuantity;
   }
-  addToCart(quantity:number) {
-    const cartItem = {
-      product: this.product,
-      quantity: quantity
-    };
-    this.cartService.addToCart(cartItem);
-    this.snackBar.open('Thêm vào giỏ hàng thành công', 'Đóng', {
-      duration: 3000,
-    });
+  // addToCart(quantity:number) {
+  //   const cartItem = {
+  //     product: this.product,
+  //     quantity: quantity
+  //   };
+  //   this.cartService.addToCart(cartItem);
+  //   this.snackBar.open('Thêm vào giỏ hàng thành công', 'Đóng', {
+  //     duration: 3000,
+  //   });
 
+  // }
+  addToCart(quantity: number): void {
+    this.authService.isAuthenticated().subscribe(isAuthenticated => {
+      if (isAuthenticated) {
+        const cartItem = {
+          product: this.product,
+          quantity: quantity
+        };
+        this.cartService.addToCart(cartItem);
+        this.snackBar.open('Thêm vào giỏ hàng thành công', 'Đóng', {
+          duration: 3000,
+        });
+      } else {
+        this.router.navigate(['/login']);
+      }
+    });
   }
 }

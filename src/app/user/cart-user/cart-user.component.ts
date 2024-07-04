@@ -16,6 +16,7 @@ export class CartUserComponent {
   cart: any[] = [];
   userId: string | null;
   orderNote: string = '';
+  paymentType: number = 0;
   constructor(private cartService: CartService,
     private orderService: OrderService,
     private orderDetailsService: OrderdetailsService,
@@ -60,7 +61,7 @@ export class CartUserComponent {
       userId: this.userId,
       totalAmount: this.calculateSubtotal(),
       orderCode: this.generateRandomOrderCode(),
-      paymentType: 0,
+      paymentType: this.paymentType,
       status: 0,
       note: this.orderNote,
       dateCreated: this.getCurrentDateTime(),
